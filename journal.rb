@@ -2,16 +2,14 @@
 # file = File.open("#{title}.txt", 'w')
 # file.close
 
-# class MenuOption
-#     def initialize(option)
-#         @option = option
-#     end
-
-# end
-
-# MenuOption.new("New Journal Entry")
+class InvalidOptionError < StandardError
+    def message
+        return "Invalid selection, try again"
+    end
+end
 
 class Menu
+    attr_reader :menu_args
     
     def initialize(*menu_args)
         @menu_args = menu_args
@@ -30,14 +28,28 @@ menu = Menu.new("New Journal Entry", "View All Journal Entries", "Search Journal
 
 menu.display_menu
 
-case ARGV[0]
-when 1
+# def gets_selection
+#     selection = ARGV[0].to_i
+#     unless selection.between?(1..menu.length)
+#         raise(InvalidOptionError)
+#     end
+# end
+
+
+
+begin
+    case ARGV[0]
+    when 1
+        puts "1"
+    when 2
+        puts "2"
+
+    when 3
+        puts "3"
+    when 4
+        puts "4"
+    end
+# rescue InvalidOptionError => e
+#     puts e.message
+#     retry
 end
-when 2
-end
-when 3
-end
-when 4
-end
-else
-    
