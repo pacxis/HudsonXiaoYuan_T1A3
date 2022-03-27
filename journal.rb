@@ -22,34 +22,46 @@ class Menu
         end
         puts "Please select an option (1 to #{@menu_args.length})"
     end
+
+    def selection
+        input = ARGV[0].to_i
+        unless input.between?(1, @menu_args.length) == true
+            raise InvalidOptionError
+        end
+        return input
+    end
+        
 end
 
-menu = Menu.new("New Journal Entry", "View All Journal Entries", "Search Journal Entries", "Exit")
+main_menu = Menu.new("New Journal Entry", "View All Journal Entries", "Search Journal Entries", "Exit")
 
-menu.display_menu
+main_menu.display_menu
+
+main_menu.selection
+
+puts input
+
+
+
 
 # def gets_selection
-#     selection = ARGV[0].to_i
 #     unless selection.between?(1..menu.length)
 #         raise(InvalidOptionError)
 #     end
 # end
 
 
-
-begin
-    case ARGV[0]
-    when 1
-        puts "1"
-    when 2
-        puts "2"
-
-    when 3
-        puts "3"
-    when 4
-        puts "4"
-    end
+# case selection
+# when 1
+#     puts "1"
+# when 2
+#     puts "2"
+# when 3
+#     puts "3"
+# when 4
+#     puts "4"
+# end
 # rescue InvalidOptionError => e
 #     puts e.message
 #     retry
-end
+
