@@ -7,5 +7,12 @@
 # file = File.open("#{title}.txt", 'w')
 # file.close
 
-class JournalApp
+class MenuOption
+    def initialize(option)
+        @option = option
+    end
+
 end
+
+MenuOption.new("New Journal Entry")
+MenuOption.new("f")
