@@ -35,6 +35,8 @@ class Menu
     end
 end
 
+
+
 main_menu = Menu.new("New Journal Entry", "View All Journal Entries", "Search Journal Entries", "Exit")
 
 # puts "enter \"help\" to see options"
@@ -50,11 +52,14 @@ case ARGV[0]
 when nil, "help"
     main_menu.display_menu
 when "1"
+    date_time = DateTime.now
+
     id = UUIDTools::UUID.timestamp_create.to_s
-    file = File.open("#{id}.txt", 'w')
-    FileUtils.mv("#{id}.txt", "Entries/#{id}.txt")
+    file = File.new("#{id}.txt", 'w')
+    FileUtils.move("#{id}.txt", "Entries/#{id}.txt")
     puts "Please enter the title: "
-    file << $stdin.gets.strip + "\n"
+    file << $stdin.gets.strip + "\n"*2
+    file << date_time.strftime("%d/%m/%Y %H:%M") + "\n"*2
 when "2"
     puts "view all"
 when "3"
