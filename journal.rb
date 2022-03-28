@@ -1,6 +1,9 @@
 
 # file = File.open("#{title}.txt", 'w')
 # file.close
+require 'date'
+require 'uuidtools'
+require 'fileutils'
 
 class InvalidOptionError < StandardError
     def message
@@ -17,51 +20,47 @@ class Menu
 
     #Prints menu
     def display_menu
+        puts "Please select an option (1 to #{@menu_args.length})"
+        puts "Enter \"help\" to see options again"
         @menu_args.each_with_index do |item, index|
             puts "#{index + 1}. #{item}"
         end
-        puts "Please select an option (1 to #{@menu_args.length})"
     end
 
-    def selection
-        input = ARGV[0].to_i
-        unless input.between?(1, @menu_args.length) == true
+    def input_check
+        input = ARGV[0]
+        unless input.to_i.between?(0, @menu_args.length) == true || input == "help"
             raise InvalidOptionError
         end
-        return input
     end
-        
 end
 
 main_menu = Menu.new("New Journal Entry", "View All Journal Entries", "Search Journal Entries", "Exit")
 
-main_menu.display_menu
+# puts "enter \"help\" to see options"
 
-main_menu.selection
+# Displays error message if menu selection is invalid
+begin
+    main_menu.input_check
+rescue InvalidOptionError => e
+    puts e.message
+end
 
-puts input
+case ARGV[0]
+when nil, "help"
+    main_menu.display_menu
+when "1"
+    id = UUIDTools::UUID.timestamp_create.to_s
+    file = File.open("#{id}.txt", 'w')
+    FileUtils.mv("#{id}.txt", "Entries/#{id}.txt")
+    puts "Please enter the title: "
+    file << $stdin.gets.strip + "\n"
+when "2"
+    puts "view all"
+when "3"
+    puts "search"
+when "4"
+    puts "exit"
+end
 
-
-
-
-# def gets_selection
-#     unless selection.between?(1..menu.length)
-#         raise(InvalidOptionError)
-#     end
-# end
-
-
-# case selection
-# when 1
-#     puts "1"
-# when 2
-#     puts "2"
-# when 3
-#     puts "3"
-# when 4
-#     puts "4"
-# end
-# rescue InvalidOptionError => e
-#     puts e.message
-#     retry
 
