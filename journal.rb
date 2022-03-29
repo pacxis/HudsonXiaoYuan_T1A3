@@ -15,7 +15,7 @@ class Menu
     # Prints menu with index
     def display_menu
         puts "Please select an option (1 to #{@menu_items.length})"
-        puts "Enter \"help\" to see options again"
+        puts "Enter 'menu' to see options again"
         @menu_items.each_with_index do |item, index|
             puts "#{index + 1}. #{item}"
         end
@@ -23,7 +23,7 @@ class Menu
 
     def input_check
         input = ARGV[0]
-        unless input.to_i.between?(0, @menu_items.length) == true || input == "help"
+        unless input.to_i.between?(0, @menu_items.length) == true || input == "menu"
             raise InvalidOptionError
         end
     end
@@ -64,6 +64,12 @@ class InvalidIntensity < StandardError
     end
 end
 
+class InvalidYesNo < StandardError
+    def message
+        return "Invalid entry, enter 'y' for yes and 'n' for no"
+    end
+end
+
 # ----------------------METHODS----------------------------
 
 def get_feeling(feel)
@@ -84,6 +90,7 @@ def get_intensity
     end
 end
 
+
 #-------------------------MAIN CODE-------------------------
 
 # Displays error message if menu selection is invalid
@@ -94,7 +101,7 @@ rescue InvalidOptionError => e
 end
 
 case ARGV[0]
-when nil, "help"
+when nil, "menu"
     main_menu.display_menu
 when "1"
     ARGV.clear
@@ -102,6 +109,8 @@ when "1"
     date_time = DateTime.now.strftime("%d/%m/%Y %H:%M")
     # Generating unique ID for entry
     id = UUIDTools::UUID.timestamp_create.to_s
+    file = File.new("#{id}.txt", 'w')
+    FileUtils.move("#{id}.txt", "/Entries/#{id}.txt")
     # Moving entry to Entries folder
     puts "Please enter the title: "
     # Getting title input from user
@@ -111,25 +120,38 @@ when "1"
     begin
         feeling = get_feeling(entry_categories)
     rescue InvalidFeeling => e
-            puts e.message(entry_categories)
-            retry
+        puts e.message(entry_categories)
+        retry
     end
     if feeling != "okay"
         puts "How would you rank the intensity of this feeling from 1 to 5? (1 being the weakest)"
-    end
-    begin
-    # intensity = @stdin.gets.strip.to_i
-    intensity = get_intensity
-    rescue InvalidIntensity => e
-        puts e.message
-        retry
+        begin
+            intensity = get_intensity
+        rescue InvalidIntensity => e
+            puts e.message
+            retry
+        end
     end
     puts "Type out your journal entry: "
     entry = gets.strip
-    file = File.new("#{id}.txt", 'w')
+    puts "Do you want to save this entry? (y/n)"
+    begin
+        selection = gets.strip
+        case selection
+        when "y"
+            puts "Journal entry saved"
+            
+        when "n"
+            puts "Journal entry discarded"
+        else
+            raise InvalidYesNo
+        end
+    rescue InvalidYesNo => e
+        puts e.message
+        retry
+    end
 
-    # FileUtils.move("#{id}.txt", "Entries/#{id}.txt")
-    
+
 when "2"
     puts "view all"
 when "3"

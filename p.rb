@@ -1,3 +1,4 @@
+require 'fileutils'
 
-
-TTY::Editor.open("hi.txt")
+file = File.new("hello.txt", 'w+')
+FileUtils.move("hello.txt", "/Entries/hello.txt")
