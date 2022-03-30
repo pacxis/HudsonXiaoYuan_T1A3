@@ -2,8 +2,9 @@
 require 'date'
 require 'uuidtools'
 require 'fileutils'
+require 'json'
 
-# -----------------------OTHER CLASSES------------------
+# -----------------------CLASSES--------------------
 
 # Class for menus
 class Menu
@@ -38,7 +39,7 @@ class Emotions
     end
 end
 
-#------------------CLASS INSTANTIATION--------------------
+#------------------------OBJECTS-------------------------
 
 main_menu = Menu.new("New Journal Entry", "View All Journal Entries", "Search Journal Entries", "Exit")
 
@@ -109,13 +110,9 @@ when "1"
     date_time = DateTime.now.strftime("%d/%m/%Y %H:%M")
     # Generating unique ID for entry
     id = UUIDTools::UUID.timestamp_create.to_s
-    file = File.new("#{id}.txt", 'w')
-    FileUtils.move("#{id}.txt", "/Entries/#{id}.txt")
-    # Moving entry to Entries folder
     puts "Please enter the title: "
     # Getting title input from user
     title = gets.strip
-    # Adding date and time to entry
     puts "What is your overall feeling today? (#{entry_categories.feelings.join(', ')})"
     begin
         feeling = get_feeling(entry_categories)
@@ -131,6 +128,8 @@ when "1"
             puts e.message
             retry
         end
+    else
+        intensity = 0
     end
     puts "Type out your journal entry: "
     entry = gets.strip
@@ -140,7 +139,15 @@ when "1"
         case selection
         when "y"
             puts "Journal entry saved"
-            
+            file = File.open("#{id}.txt", 'w')
+            FileUtils.mv("#{id}.txt", "Entries/#{id}.txt")
+            file << title + "\n"*2
+            file << date_time + + "\n"*2
+            file << feeling + " (#{intensity})" + "\n"*2
+            file << entry
+            entry_info = { id: id, date: date, title: title, feeling: feeling, intensity: intensity }
+            j_index = JSON.load_file('journal_index.json', )
+
         when "n"
             puts "Journal entry discarded"
         else

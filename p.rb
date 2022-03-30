@@ -1,4 +1,6 @@
-require 'fileutils'
+a = "wrgaer"
+b = 443
 
-file = File.new("hello.txt", 'w+')
-FileUtils.move("hello.txt", "/Entries/hello.txt")
+pa = {title: a, benis: b}
+
+p pa
