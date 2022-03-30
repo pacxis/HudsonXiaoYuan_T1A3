@@ -101,6 +101,8 @@ rescue InvalidOptionError => e
     puts e.message
 end
 
+j_index = JSON.load_file('journal_index.json', symbolize_names: true)
+
 case ARGV[0]
 when nil, "menu"
     main_menu.display_menu
@@ -111,7 +113,6 @@ when "1"
     # Generating unique ID for entry
     id = UUIDTools::UUID.timestamp_create.to_s
     puts "Please enter the title: "
-    # Getting title input from user
     title = gets.strip
     puts "What is your overall feeling today? (#{entry_categories.feelings.join(', ')})"
     begin
@@ -120,7 +121,7 @@ when "1"
         puts e.message(entry_categories)
         retry
     end
-    if feeling != "okay"
+    unless feeling == "okay"
         puts "How would you rank the intensity of this feeling from 1 to 5? (1 being the weakest)"
         begin
             intensity = get_intensity
@@ -134,20 +135,26 @@ when "1"
     puts "Type out your journal entry: "
     entry = gets.strip
     puts "Do you want to save this entry? (y/n)"
+
     begin
         selection = gets.strip
         case selection
         when "y"
             puts "Journal entry saved"
+
+            # Writing saved information to txt file
             file = File.open("#{id}.txt", 'w')
             FileUtils.mv("#{id}.txt", "Entries/#{id}.txt")
             file << title + "\n"*2
             file << date_time + + "\n"*2
             file << feeling + " (#{intensity})" + "\n"*2
             file << entry
-            entry_info = { id: id, date: date, title: title, feeling: feeling, intensity: intensity }
-            j_index = JSON.load_file('journal_index.json', )
 
+            # Writing entry info to json file
+            entry_info = { title: title, id: id, date: date_time,  feeling: feeling, intensity: intensity }
+            File.open('journal_index.json', 'w') do |f|
+                f.puts JSON.pretty_generate(j_index << entry_info)
+            end
         when "n"
             puts "Journal entry discarded"
         else
@@ -157,10 +164,8 @@ when "1"
         puts e.message
         retry
     end
-
-
 when "2"
-    puts "view all"
+    
 when "3"
     puts "search"
 when "4"
