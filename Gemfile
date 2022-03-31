@@ -9,3 +9,5 @@ gem "rspec", "~> 3.11"
 gem "uuidtools", "~> 2.2"
 
 gem "fileutils", "~> 1.6"
+
+gem "tty-prompt", "~> 0.23.1"

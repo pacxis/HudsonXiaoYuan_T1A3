@@ -3,6 +3,7 @@ require 'date'
 require 'uuidtools'
 require 'fileutils'
 require 'json'
+require 'tty-prompt'
 
 # -----------------------CLASSES--------------------
 
@@ -44,6 +45,8 @@ end
 main_menu = Menu.new("New Journal Entry", "View All Journal Entries", "Search Journal Entries", "Exit")
 
 entry_categories = Emotions.new("okay", "happy", "sad", "angry", "stressed", "anxious", "suprised", "confused")
+
+view_entries_menu = Menu.new("By date", "By feeling", "By title alphabetical order")
 
 # ----------------ERROR CLASSES---------------------------
 
@@ -108,9 +111,9 @@ when nil, "menu"
     main_menu.display_menu
 when "1"
     ARGV.clear
-    # Generating current date and time
+
     date_time = DateTime.now.strftime("%d/%m/%Y %H:%M")
-    # Generating unique ID for entry
+
     id = UUIDTools::UUID.timestamp_create.to_s
     puts "Please enter the title: "
     title = gets.strip
@@ -151,7 +154,7 @@ when "1"
             file << entry
 
             # Writing entry info to json file
-            entry_info = { title: title, id: id, date: date_time,  feeling: feeling, intensity: intensity }
+            entry_info = { title: title, id: id, date: date_time, feeling: feeling, intensity: intensity }
             File.open('journal_index.json', 'w') do |f|
                 f.puts JSON.pretty_generate(j_index << entry_info)
             end
@@ -170,6 +173,9 @@ when "3"
     puts "search"
 when "4"
     puts "exit"
+
 end
+
+
 
 
