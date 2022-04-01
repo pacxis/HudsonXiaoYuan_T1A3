@@ -1,75 +1,5 @@
 [
   {
-    "id": "62770e88-afe2-11ec-ac85-c6a94a3b8911",
-    "date": "25/03/2022 14:32",
-    "title": "fgmsry",
-    "feeling": "okay",
-    "intensity": 0
-  },
-  {
-    "title": "pepweotw",
-    "id": "c2a0062a-b005-11ec-9d9a-c6a94a3b8911",
-    "date": "30/03/2022 18:45",
-    "feeling": "okay",
-    "intensity": 0
-  },
-  {
-    "title": "tejsryksyt",
-    "id": "c8c3444a-b005-11ec-8806-c6a94a3b8911",
-    "date": "30/03/2022 18:45",
-    "feeling": "okay",
-    "intensity": 0
-  },
-  {
-    "title": "hello",
-    "id": "cdb46d44-b005-11ec-9978-c6a94a3b8911",
-    "date": "30/03/2022 18:45",
-    "feeling": "stressed",
-    "intensity": 5
-  },
-  {
-    "title": "toetart",
-    "id": "da191a80-b005-11ec-bb73-c6a94a3b8911",
-    "date": "30/03/2022 18:46",
-    "feeling": "sad",
-    "intensity": 2
-  },
-  {
-    "title": "aeiraera",
-    "id": "3ac43c70-b006-11ec-83be-c6a94a3b8911",
-    "date": "30/03/2022 18:48",
-    "feeling": "confused",
-    "intensity": 5
-  },
-  {
-    "title": "reatoaaepr",
-    "id": "4114d2f6-b006-11ec-801c-c6a94a3b8911",
-    "date": "30/03/2022 18:49",
-    "feeling": "happy",
-    "intensity": 4
-  },
-  {
-    "title": "er3aero",
-    "id": "4cb1f6fc-b006-11ec-b24f-c6a94a3b8911",
-    "date": "30/03/2022 18:49",
-    "feeling": "okay",
-    "intensity": 0
-  },
-  {
-    "title": "eriieohs",
-    "id": "5bc899a2-b006-11ec-a2bb-c6a94a3b8911",
-    "date": "30/03/2022 18:49",
-    "feeling": "sad",
-    "intensity": 1
-  },
-  {
-    "title": "tomzbda",
-    "id": "608d6aa8-b006-11ec-81e1-c6a94a3b8911",
-    "date": "30/03/2022 18:49",
-    "feeling": "stressed",
-    "intensity": 2
-  },
-  {
     "title": "My Journal Entry",
     "id": "c1adda86-b095-11ec-b6bc-c6a94a3b8911",
     "date": "31/03/2022 11:56",
@@ -168,10 +98,178 @@
     "intensity": 5
   },
   {
-    "title": "my day today",
-    "id": "b31e9ac8-b162-11ec-8247-8afc53ccf5d3",
-    "date": "01/04/2022",
+    "title": "average day today",
+    "id": "0c090e42-b17d-11ec-9b25-8afc53ccf5d3",
+    "date": "25/8/2020",
     "feeling": "okay",
     "intensity": 0
+  },
+  {
+    "title": "average day today",
+    "id": "0c626bae-b17d-11ec-9b25-8afc53ccf5d3",
+    "date": "6/5/2021",
+    "feeling": "okay",
+    "intensity": 0
+  },
+  {
+    "title": "average day today",
+    "id": "0cbd65b8-b17d-11ec-9b25-8afc53ccf5d3",
+    "date": "25/4/2021",
+    "feeling": "okay",
+    "intensity": 0
+  },
+  {
+    "title": "average day today",
+    "id": "0d264d1c-b17d-11ec-9b25-8afc53ccf5d3",
+    "date": "12/10/2020",
+    "feeling": "okay",
+    "intensity": 0
+  },
+  {
+    "title": "bored",
+    "id": "1135520e-b17d-11ec-a531-8afc53ccf5d3",
+    "date": "13/12/2021",
+    "feeling": "okay",
+    "intensity": 0
+  },
+  {
+    "title": "bored",
+    "id": "119128a4-b17d-11ec-a531-8afc53ccf5d3",
+    "date": "14/4/2020",
+    "feeling": "okay",
+    "intensity": 0
+  },
+  {
+    "title": "bored",
+    "id": "11ef0d02-b17d-11ec-a531-8afc53ccf5d3",
+    "date": "8/5/2021",
+    "feeling": "okay",
+    "intensity": 0
+  },
+  {
+    "title": "nice weather",
+    "id": "1bdacb8a-b17d-11ec-ac49-8afc53ccf5d3",
+    "date": "20/5/2020",
+    "feeling": "happy",
+    "intensity": 2
+  },
+  {
+    "title": "nice weather",
+    "id": "1c359178-b17d-11ec-ac49-8afc53ccf5d3",
+    "date": "2/12/2020",
+    "feeling": "happy",
+    "intensity": 3
+  },
+  {
+    "title": "nice weather",
+    "id": "1c88d6b2-b17d-11ec-ac49-8afc53ccf5d3",
+    "date": "11/10/2020",
+    "feeling": "happy",
+    "intensity": 5
+  },
+  {
+    "title": "great day",
+    "id": "2056a62a-b17d-11ec-a444-8afc53ccf5d3",
+    "date": "18/2/2020",
+    "feeling": "happy",
+    "intensity": 1
+  },
+  {
+    "title": "great day",
+    "id": "20ac1574-b17d-11ec-a444-8afc53ccf5d3",
+    "date": "15/4/2021",
+    "feeling": "happy",
+    "intensity": 2
+  },
+  {
+    "title": "great day",
+    "id": "217ee1e8-b17d-11ec-a444-8afc53ccf5d3",
+    "date": "16/1/2020",
+    "feeling": "happy",
+    "intensity": 4
+  },
+  {
+    "title": "bad day today",
+    "id": "2687df8c-b17d-11ec-8333-8afc53ccf5d3",
+    "date": "22/6/2021",
+    "feeling": "sad",
+    "intensity": 3
+  },
+  {
+    "title": "bad day today",
+    "id": "26e51594-b17d-11ec-8333-8afc53ccf5d3",
+    "date": "26/3/2020",
+    "feeling": "sad",
+    "intensity": 4
+  },
+  {
+    "title": "bad day today",
+    "id": "2737783e-b17d-11ec-8333-8afc53ccf5d3",
+    "date": "13/12/2021",
+    "feeling": "sad",
+    "intensity": 3
+  },
+  {
+    "title": "feeling down",
+    "id": "35197a42-b17d-11ec-9ac0-8afc53ccf5d3",
+    "date": "3/8/2021",
+    "feeling": "sad",
+    "intensity": 5
+  },
+  {
+    "title": "feeling down",
+    "id": "357a8ae4-b17d-11ec-9ac0-8afc53ccf5d3",
+    "date": "30/8/2021",
+    "feeling": "sad",
+    "intensity": 1
+  },
+  {
+    "title": "feeling down",
+    "id": "35d9efde-b17d-11ec-9ac0-8afc53ccf5d3",
+    "date": "17/4/2021",
+    "feeling": "sad",
+    "intensity": 3
+  },
+  {
+    "title": "really mad today",
+    "id": "4cea90de-b17d-11ec-b7c7-8afc53ccf5d3",
+    "date": "16/12/2021",
+    "feeling": "angry",
+    "intensity": 5
+  },
+  {
+    "title": "really mad today",
+    "id": "4d481614-b17d-11ec-b7c7-8afc53ccf5d3",
+    "date": "8/1/2021",
+    "feeling": "angry",
+    "intensity": 4
+  },
+  {
+    "title": "really mad today",
+    "id": "4da6a3a0-b17d-11ec-b7c7-8afc53ccf5d3",
+    "date": "7/6/2021",
+    "feeling": "angry",
+    "intensity": 1
+  },
+  {
+    "title": "bad mood",
+    "id": "53626e5a-b17d-11ec-bf69-8afc53ccf5d3",
+    "date": "19/8/2021",
+    "feeling": "angry",
+    "intensity": 1
+  },
+  {
+    "title": "bad mood",
+    "id": "53be1bb0-b17d-11ec-bf69-8afc53ccf5d3",
+    "date": "10/10/2021",
+    "feeling": "angry",
+    "intensity": 5
+  },
+  {
+    "title": "bad mood",
+    "id": "541ff678-b17d-11ec-bf69-8afc53ccf5d3",
+    "date": "7/6/2020",
+    "feeling": "angry",
+    "intensity": 2
   }
 ]
