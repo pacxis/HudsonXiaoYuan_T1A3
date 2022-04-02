@@ -13,3 +13,5 @@ gem "fileutils", "~> 1.6"
 gem "tty-prompt", "~> 0.23.1"
 
 gem "awesome_print", "~> 1.9"
+
+gem "colorize", "~> 0.8.1"

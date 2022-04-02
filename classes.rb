@@ -29,3 +29,9 @@ class InvalidArgument < StandardError
         '-s' to search entires"
     end
 end
+
+class NoEntriesError < StandardError
+    def message
+        return "There are no journal entries yet"
+    end
+end

@@ -511,5 +511,14 @@
     "year": 2020,
     "month": 5,
     "day": 3
+  },
+  {
+    "title": "uninteresting day",
+    "id": "8ccffd18-b238-11ec-9212-8afc53ccf5d3",
+    "feeling": "okay",
+    "intensity": 0,
+    "year": 2022,
+    "month": 2022,
+    "day": 2
   }
 ]

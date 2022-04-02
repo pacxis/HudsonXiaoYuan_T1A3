@@ -5,6 +5,7 @@ require 'fileutils'
 require 'json'
 require 'tty-prompt'
 require 'awesome_print'
+require 'colorize'
 
 require_relative 'classes.rb'
 
@@ -14,7 +15,7 @@ main_menu = Menu.new("New Journal Entry", "View All Journal Entries", "Search Jo
 
 entry_categories = Emotions.new("okay", "happy", "sad", "angry", "stressed", "anxious", "suprised", "confused")
 
-view_menu = Menu.new("By date", "By feeling", "By title alphabetical order")
+view_menu = Menu.new("By date", "By feeling", "By title alphabetical order", "Return to previous menu")
 
 # ----------------ERROR CLASSES---------------------------
 
@@ -43,7 +44,7 @@ j_index = JSON.load_file('journal_index.json', symbolize_names: true)
 prompt = TTY::Prompt.new
 selection = nil
 
-while selection != main_menu.menu_items[-1] do
+while selection != main_menu.menu_items[-1]
     selection = ARGV[0].to_s
     if selection == ""
         selection = prompt.select("What would you like to do?", main_menu.menu_items)
@@ -58,14 +59,14 @@ while selection != main_menu.menu_items[-1] do
         id = UUIDTools::UUID.timestamp_create.to_s
         title = prompt.ask("Please enter the title: ")
         feeling = prompt.select("What is your overall feeling today?", entry_categories.feelings)
-        unless feeling == "okay"
-            intensity = prompt.ask("How would you rank the intensity of this feeling from 1 to 5? (1 being the weakest)") do |num|
-                num.in "1-5"
-                num.messages[:range?] = "Invalid input, select a number from 1 to 5"
-            end
-        else
-            intensity = 0
-        end
+        intensity = if feeling == "okay"
+                        0
+                    else
+                        prompt.ask("How would you rank the intensity of this feeling from 1 to 5? (1 being the weakest)") do |num|
+                            num.in "1-5"
+                            num.messages[:range?] = "Invalid input, select a number from 1 to 5"
+                        end
+                    end
         entry = prompt.ask("Type out your journal entry: ")
         
         selection = prompt.yes?("Do you want to save this entry?")
@@ -91,33 +92,60 @@ while selection != main_menu.menu_items[-1] do
             File.open('journal_index.json', 'w') do |f|
                 f.puts JSON.pretty_generate(j_index << entry_info)
             end
-             puts "Journal entry saved"
-        else 
+            puts "Journal entry saved"
+        else
             puts "Journal entry discarded"
         end
     when main_menu.menu_items[1], '-v'
+        begin
+            raise NoEntriesError if j_index.empty?
+        rescue NoEntriesError => e
+            puts e.message
+        end
         selection = prompt.select("How would you like to view your entries?", view_menu.menu_items)
         # j_index.each do |etr|
         
         case selection
         when view_menu.menu_items[0]
-            puts 'ere'
+            sorted_entries = j_index.each do |hash|
+                hash.sort_by { |a| [a[:year], a[:month], a[:day]] }
+            end
+            sorted_entries.each_with_index do |hash, index|
+                puts "\nJournal Entry #{index + 1}".underline
+                ap hash.slice(:day, :month, :year, :title, :feeling, :intensity)
+            end
+            
         when view_menu.menu_items[1]
             sorted_entries = j_index.sort { |a, b| [a[:feeling], a[:intensity]] <=> [b[:feeling], b[:intensity]] }
+            sorted_entries.each_with_index do |hash, index|
+                puts "\nJournal Entry #{index + 1}".underline
+                ap hash.slice(:feeling, :intensity, :title, :day, :month, :year)
+            end
+            
             # sorted_entries = j_index.sort_by { |k| k[:feeling] }
             # sorted_entries2 = sorted_entries.sort_by { |k| k[:intensity] }
-            ap sorted_entries
         when view_menu.menu_items[2]
             sorted_entries = j_index.sort_by { |key| key[:title] }
-            ap sorted_entries
-            
-            # sorted_entries.each do |key, value|
-            #     puts key
+            sorted_entries.each_with_index do |hash, index|
+                puts "\nJournal Entry #{index + 1}".underline
+                ap hash.slice(:title, :feeling, :intensity, :day, :month, :year)
+            end
+
+            selection = prompt.ask("Enter the Journal Entry number you would like to view: ") do |num|
+                            num.in "1-#{sorted_entries.length}"
+                            num.messages[:range?] = "Invalid journal entry selection, input a number from 1 to #{sorted_entries.length}"
+                        end
         end
         
     when main_menu.menu_items[2], '-s'
+        begin
+            raise NoEntriesError if j_index.empty?
+        rescue NoEntriesError => e
+            puts e.message
+        end
         puts "hello"
-
+    when main_menu.menu_items[3]
+        exit
     else
         begin
             raise InvalidArgument
