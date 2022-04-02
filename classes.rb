@@ -35,3 +35,4 @@ class NoEntriesError < StandardError
         return "There are no journal entries yet"
     end
 end
+

@@ -8,36 +8,16 @@ require 'awesome_print'
 require 'colorize'
 
 require_relative 'classes.rb'
+require_relative 'methods.rb'
 
-#------------------------OBJECTS-------------------------
 
 main_menu = Menu.new("New Journal Entry", "View All Journal Entries", "Search Journal Entries", "Exit")
 
 entry_categories = Emotions.new("okay", "happy", "sad", "angry", "stressed", "anxious", "suprised", "confused")
 
-view_menu = Menu.new("By date", "By feeling", "By title alphabetical order", "Return to previous menu")
+view_menu = Menu.new("By date", "By feeling", "By title alphabetical order", "Return to main menu")
 
-# ----------------ERROR CLASSES---------------------------
-
-# class InvalidFeeling < StandardError
-#     def message(feel)
-#         return "Invalid feeling entry, input one of the following: #{feel.feelings.join(', ')}"
-#     end
-# end
-
-# class InvalidIntensity < StandardError
-#     def message
-#         return "Invalid intensity entry, input a number from 1 to 5"
-#     end
-# end
-
-# class InvalidYesNo < StandardError
-#     def message
-#         return "Invalid entry, enter 'y' for yes and 'n' for no"
-#     end
-# end
-
-#-------------------------MAIN CODE-------------------------
+view_menu_after = Menu.new("View another entry", "Return to previous menu")
 
 
 j_index = JSON.load_file('journal_index.json', symbolize_names: true)
@@ -45,6 +25,7 @@ prompt = TTY::Prompt.new
 selection = nil
 
 while selection != main_menu.menu_items[-1]
+    system "clear"
     selection = ARGV[0].to_s
     if selection == ""
         selection = prompt.select("What would you like to do?", main_menu.menu_items)
@@ -102,41 +83,43 @@ while selection != main_menu.menu_items[-1]
         rescue NoEntriesError => e
             puts e.message
         end
-        selection = prompt.select("How would you like to view your entries?", view_menu.menu_items)
-        # j_index.each do |etr|
-        
-        case selection
-        when view_menu.menu_items[0]
-            sorted_entries = j_index.each do |hash|
-                hash.sort_by { |a| [a[:year], a[:month], a[:day]] }
+
+        while selection != view_menu.menu_items[-1] do
+            system "clear"
+            selection = prompt.select("How would you like to view your entries?", view_menu.menu_items)
+
+            case selection
+            when view_menu.menu_items[0]
+                while selection != view_menu_after.menu_items[-1] do
+                    sorted_entries = j_index.each do |hash|
+                        hash.sort_by { |a| [a[:year], a[:month], a[:day]] }
+                    end
+                    sorted_entries.each_with_index do |hash, index|
+                        puts "\nJournal Entry #{index + 1}".underline
+                        ap hash.slice(:day, :month, :year, :title, :feeling, :intensity)
+                    end
+                end
+
+            when view_menu.menu_items[1]
+                while selection != view_menu_after.menu_items[-1] do
+                    sorted_entries = j_index.sort { |a, b| [a[:feeling], a[:intensity]] <=> [b[:feeling], b[:intensity]] }
+                    sorted_entries.each_with_index do |hash, index|
+                        puts "\nJournal Entry #{index + 1}".underline
+                        ap hash.slice(:feeling, :intensity, :title, :day, :month, :year)
+                    end
+                    selection = display_entry(sorted_entries, view_menu_after.menu_items)
+                end
+
+            when view_menu.menu_items[2]
+                while selection != view_menu_after.menu_items[-1] do
+                    sorted_entries = j_index.sort_by { |key| key[:title] }
+                    sorted_entries.each_with_index do |hash, index|
+                        puts "\nJournal Entry #{index + 1}".underline
+                        ap hash.slice(:title, :feeling, :intensity, :day, :month, :year)
+                    end
+                    selection = display_entry(sorted_entries, view_menu_after.menu_items)
+                end
             end
-            sorted_entries.each_with_index do |hash, index|
-                puts "\nJournal Entry #{index + 1}".underline
-                ap hash.slice(:day, :month, :year, :title, :feeling, :intensity)
-            end
-            
-        when view_menu.menu_items[1]
-            sorted_entries = j_index.sort { |a, b| [a[:feeling], a[:intensity]] <=> [b[:feeling], b[:intensity]] }
-            sorted_entries.each_with_index do |hash, index|
-                puts "\nJournal Entry #{index + 1}".underline
-                ap hash.slice(:feeling, :intensity, :title, :day, :month, :year)
-            end
-            
-            # sorted_entries = j_index.sort_by { |k| k[:feeling] }
-            # sorted_entries2 = sorted_entries.sort_by { |k| k[:intensity] }
-        when view_menu.menu_items[2]
-            sorted_entries = j_index.sort_by { |key| key[:title] }
-            sorted_entries.each_with_index do |hash, index|
-                puts "\nJournal Entry #{index + 1}".underline
-                ap hash.slice(:title, :feeling, :intensity, :day, :month, :year)
-            end
-            
-            selection = prompt.ask("Enter the Journal Entry number you would like to view: ") do |num|
-                            num.in "1-#{sorted_entries.length}"
-                            num.messages[:range?] = "Invalid journal entry selection, input a number from 1 to #{sorted_entries.length}"
-                        end
-            entry = File.readlines("Entries/#{sorted_entries[selection.to_i - 1][:id]}.txt")
-            puts entry
         end
 
     when main_menu.menu_items[2], '-s'
