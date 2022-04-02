@@ -4,6 +4,7 @@ require 'uuidtools'
 require 'fileutils'
 require 'json'
 require 'tty-prompt'
+require 'awesome_print'
 
 require_relative 'classes.rb'
 
@@ -17,29 +18,23 @@ view_menu = Menu.new("By date", "By feeling", "By title alphabetical order")
 
 # ----------------ERROR CLASSES---------------------------
 
-class InvalidOptionError < StandardError
-    def message
-        return "Invalid menu selection, try again"
-    end
-end
+# class InvalidFeeling < StandardError
+#     def message(feel)
+#         return "Invalid feeling entry, input one of the following: #{feel.feelings.join(', ')}"
+#     end
+# end
 
-class InvalidFeeling < StandardError
-    def message(feel)
-        return "Invalid feeling entry, input one of the following: #{feel.feelings.join(', ')}"
-    end
-end
+# class InvalidIntensity < StandardError
+#     def message
+#         return "Invalid intensity entry, input a number from 1 to 5"
+#     end
+# end
 
-class InvalidIntensity < StandardError
-    def message
-        return "Invalid intensity entry, input a number from 1 to 5"
-    end
-end
-
-class InvalidYesNo < StandardError
-    def message
-        return "Invalid entry, enter 'y' for yes and 'n' for no"
-    end
-end
+# class InvalidYesNo < StandardError
+#     def message
+#         return "Invalid entry, enter 'y' for yes and 'n' for no"
+#     end
+# end
 
 #-------------------------MAIN CODE-------------------------
 
@@ -48,12 +43,18 @@ j_index = JSON.load_file('journal_index.json', symbolize_names: true)
 prompt = TTY::Prompt.new
 selection = nil
 
-while selection != "Exit" do
-    selection = prompt.select("What would you like to do?", main_menu.menu_items)
+while selection != main_menu.menu_items[-1] do
+    selection = ARGV[0].to_s
+    if selection == ""
+        selection = prompt.select("What would you like to do?", main_menu.menu_items)
+    end
     case selection
-    when main_menu.menu_items[0]
+    when main_menu.menu_items[0], '-n'
 
-        date = Date.today.strftime("%d/%m/%Y")
+        year = Date.today.strftime("%Y")
+        month = Date.today.strftime("%m")
+        day = Date.today.strftime("%d")
+        date = "#{day}/#{month}/#{year}"
         id = UUIDTools::UUID.timestamp_create.to_s
         title = prompt.ask("Please enter the title: ")
         feeling = prompt.select("What is your overall feeling today?", entry_categories.feelings)
@@ -77,7 +78,16 @@ while selection != "Exit" do
             file << feeling + " (#{intensity})" + "\n"*2
             file << entry
 
-            entry_info = { title: title, id: id, date: date, feeling: feeling, intensity: intensity }
+            entry_info = {
+              title: title,
+              id: id,
+              feeling: feeling,
+              intensity: intensity,
+              year: year.to_i,
+              month: year.to_i,
+              day: day.to_i
+            }
+
             File.open('journal_index.json', 'w') do |f|
                 f.puts JSON.pretty_generate(j_index << entry_info)
             end
@@ -85,40 +95,39 @@ while selection != "Exit" do
         else 
             puts "Journal entry discarded"
         end
-    when main_menu.menu_items[1]
+    when main_menu.menu_items[1], '-v'
         selection = prompt.select("How would you like to view your entries?", view_menu.menu_items)
         # j_index.each do |etr|
-        sorted_entries = j_index.sort_by { |key| key[:intensity]}
-        puts sorted_entries
+        
         case selection
         when view_menu.menu_items[0]
             puts 'ere'
         when view_menu.menu_items[1]
-            puts 'ether'
+            sorted_entries = j_index.sort { |a, b| [a[:feeling], a[:intensity]] <=> [b[:feeling], b[:intensity]] }
+            # sorted_entries = j_index.sort_by { |k| k[:feeling] }
+            # sorted_entries2 = sorted_entries.sort_by { |k| k[:intensity] }
+            ap sorted_entries
         when view_menu.menu_items[2]
-            puts 'etets'
+            sorted_entries = j_index.sort_by { |key| key[:title] }
+            ap sorted_entries
+            
+            # sorted_entries.each do |key, value|
+            #     puts key
         end
-    when main_menu.menu_items[2]
-        date = rand(1..30).to_s + '/' + rand(1..12).to_s + '/' + rand(2020..2021).to_s
-        title = "bad mood"
-        feeling = "angry"
-        intensity = rand(1..5)
-    # intensity = 0
-        id = UUIDTools::UUID.timestamp_create.to_s
-        entry = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus augue sit amet tincidunt ornare. Donec nec venenatis nisl, rutrum scelerisque nibh. Sed a tincidunt felis. Praesent rutrum semper fringilla. Donec hendrerit nulla sed ultrices efficitur. Nullam sit amet molestie nibh. Quisque eget ornare lectus. Proin in accumsan lectus. Pellentesque lectus orci, accumsan id diam et, volutpat aliquam lorem. Integer consequat faucibus ullamcorper. Nulla interdum accumsan quam, sit amet condimentum erat blandit ut."
-        file = File.open("#{id}.txt", 'w')
-        FileUtils.mv("#{id}.txt", "Entries/#{id}.txt")
-        file << title + "\n"*2
-        file << date + "\n"*2
-        file << feeling + " (#{intensity})" + "\n"*2
-        file << entry
-        entry_info = { title: title, id: id, date: date, feeling: feeling, intensity: intensity }
-        File.open('journal_index.json', 'w') do |f|
-            f.puts JSON.pretty_generate(j_index << entry_info)
+        
+    when main_menu.menu_items[2], '-s'
+        puts "hello"
+
+    else
+        begin
+            raise InvalidArgument
+        rescue InvalidArgument => e
+            puts e.message
         end
-        file.close
+        exit
     end
 end
+
 
 
 

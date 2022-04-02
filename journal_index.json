@@ -1,275 +1,515 @@
 [
   {
-    "title": "My Journal Entry",
-    "id": "c1adda86-b095-11ec-b6bc-c6a94a3b8911",
-    "date": "31/03/2022 11:56",
-    "feeling": "happy",
-    "intensity": 3
+    "title": "bored",
+    "id": "c3460590-b17f-11ec-8416-8afc53ccf5d3",
+    "feeling": "okay",
+    "intensity": 0,
+    "year": 2020,
+    "month": 5,
+    "day": 6
   },
   {
-    "title": "ran into my friend today",
-    "id": "afb5d8a2-b161-11ec-bca1-8afc53ccf5d3",
-    "date": "17/4/2020",
+    "title": "bored",
+    "id": "c3e4e96c-b17f-11ec-8416-8afc53ccf5d3",
+    "feeling": "okay",
+    "intensity": 0,
+    "year": 2021,
+    "month": 12,
+    "day": 20
+  },
+  {
+    "title": "feeling okay",
+    "id": "c9e8a088-b17f-11ec-b083-8afc53ccf5d3",
+    "feeling": "okay",
+    "intensity": 0,
+    "year": 2021,
+    "month": 2,
+    "day": 23
+  },
+  {
+    "title": "feeling okay",
+    "id": "ca48b928-b17f-11ec-b083-8afc53ccf5d3",
+    "feeling": "okay",
+    "intensity": 0,
+    "year": 2021,
+    "month": 4,
+    "day": 24
+  },
+  {
+    "title": "feeling okay",
+    "id": "cb1aeaa6-b17f-11ec-b083-8afc53ccf5d3",
+    "feeling": "okay",
+    "intensity": 0,
+    "year": 2021,
+    "month": 6,
+    "day": 21
+  },
+  {
+    "title": "nice weather today",
+    "id": "d942c91e-b17f-11ec-a219-8afc53ccf5d3",
+    "feeling": "happy",
+    "intensity": 3,
+    "year": 2021,
+    "month": 11,
+    "day": 12
+  },
+  {
+    "title": "nice weather today",
+    "id": "da8a57e2-b17f-11ec-a219-8afc53ccf5d3",
+    "feeling": "happy",
+    "intensity": 1,
+    "year": 2021,
+    "month": 8,
+    "day": 22
+  },
+  {
+    "title": "nice weather today",
+    "id": "daf84090-b17f-11ec-a219-8afc53ccf5d3",
+    "feeling": "happy",
+    "intensity": 5,
+    "year": 2021,
+    "month": 5,
+    "day": 26
+  },
+  {
+    "title": "nice weather today",
+    "id": "db6f208e-b17f-11ec-a219-8afc53ccf5d3",
+    "feeling": "happy",
+    "intensity": 5,
+    "year": 2020,
+    "month": 8,
+    "day": 8
+  },
+  {
+    "title": "feeling good today",
+    "id": "e2e82f68-b17f-11ec-ba3d-8afc53ccf5d3",
+    "feeling": "happy",
+    "intensity": 3,
+    "year": 2021,
+    "month": 5,
+    "day": 9
+  },
+  {
+    "title": "feeling good today",
+    "id": "e33d8472-b17f-11ec-ba3d-8afc53ccf5d3",
+    "feeling": "happy",
+    "intensity": 3,
+    "year": 2020,
+    "month": 12,
+    "day": 10
+  },
+  {
+    "title": "feeling good today",
+    "id": "e38f9bd6-b17f-11ec-ba3d-8afc53ccf5d3",
+    "feeling": "happy",
+    "intensity": 5,
+    "year": 2021,
+    "month": 10,
+    "day": 19
+  },
+  {
+    "title": "feeling good today",
+    "id": "e3dafc0c-b17f-11ec-ba3d-8afc53ccf5d3",
+    "feeling": "happy",
+    "intensity": 3,
+    "year": 2020,
+    "month": 4,
+    "day": 1
+  },
+  {
+    "title": "feeling good today",
+    "id": "e42a941a-b17f-11ec-ba3d-8afc53ccf5d3",
+    "feeling": "happy",
+    "intensity": 5,
+    "year": 2021,
+    "month": 9,
+    "day": 7
+  },
+  {
+    "title": "down today",
+    "id": "ece0d312-b17f-11ec-901a-8afc53ccf5d3",
+    "feeling": "sad",
+    "intensity": 3,
+    "year": 2020,
+    "month": 10,
+    "day": 26
+  },
+  {
+    "title": "down today",
+    "id": "ed3d8d82-b17f-11ec-901a-8afc53ccf5d3",
+    "feeling": "sad",
+    "intensity": 2,
+    "year": 2021,
+    "month": 9,
+    "day": 20
+  },
+  {
+    "title": "down today",
+    "id": "ed97d5da-b17f-11ec-901a-8afc53ccf5d3",
+    "feeling": "sad",
+    "intensity": 4,
+    "year": 2020,
+    "month": 12,
+    "day": 24
+  },
+  {
+    "title": "down today",
+    "id": "edee8c40-b17f-11ec-901a-8afc53ccf5d3",
+    "feeling": "sad",
+    "intensity": 5,
+    "year": 2021,
+    "month": 4,
+    "day": 4
+  },
+  {
+    "title": "down today",
+    "id": "1a65e462-b180-11ec-901a-8afc53ccf5d3",
+    "feeling": "sad",
+    "intensity": 1,
+    "year": 2020,
+    "month": 2,
+    "day": 26
+  },
+  {
+    "title": "bad day today",
+    "id": "6609ddd2-b181-11ec-a535-8afc53ccf5d3",
+    "feeling": "sad",
+    "intensity": 3,
+    "year": 2020,
+    "month": 2,
+    "day": 30
+  },
+  {
+    "title": "bad day today",
+    "id": "6740d868-b181-11ec-a535-8afc53ccf5d3",
+    "feeling": "sad",
+    "intensity": 4,
+    "year": 2021,
+    "month": 8,
+    "day": 17
+  },
+  {
+    "title": "bad day today",
+    "id": "67c6fbbe-b181-11ec-a535-8afc53ccf5d3",
+    "feeling": "sad",
+    "intensity": 4,
+    "year": 2020,
+    "month": 8,
+    "day": 8
+  },
+  {
+    "title": "so angry today",
+    "id": "70981444-b181-11ec-87db-8afc53ccf5d3",
+    "feeling": "angry",
+    "intensity": 4,
+    "year": 2021,
+    "month": 5,
+    "day": 7
+  },
+  {
+    "title": "so angry today",
+    "id": "70e55858-b181-11ec-87db-8afc53ccf5d3",
+    "feeling": "angry",
+    "intensity": 5,
+    "year": 2021,
+    "month": 5,
+    "day": 9
+  },
+  {
+    "title": "so angry today",
+    "id": "712f1d58-b181-11ec-87db-8afc53ccf5d3",
+    "feeling": "angry",
+    "intensity": 3,
+    "year": 2020,
+    "month": 11,
+    "day": 11
+  },
+  {
+    "title": "so angry today",
+    "id": "71795936-b181-11ec-87db-8afc53ccf5d3",
+    "feeling": "angry",
+    "intensity": 4,
+    "year": 2021,
+    "month": 7,
+    "day": 11
+  },
+  {
+    "title": "stressed out today",
+    "id": "8851a906-b181-11ec-855d-8afc53ccf5d3",
+    "feeling": "stressed",
+    "intensity": 1,
+    "year": 2021,
+    "month": 10,
+    "day": 20
+  },
+  {
+    "title": "stressed out today",
+    "id": "88a9fd68-b181-11ec-855d-8afc53ccf5d3",
+    "feeling": "stressed",
+    "intensity": 4,
+    "year": 2020,
+    "month": 4,
+    "day": 18
+  },
+  {
+    "title": "stressed out today",
+    "id": "89072042-b181-11ec-855d-8afc53ccf5d3",
+    "feeling": "stressed",
+    "intensity": 3,
+    "year": 2020,
+    "month": 11,
+    "day": 25
+  },
+  {
+    "title": "stressed out today",
+    "id": "895e33a0-b181-11ec-855d-8afc53ccf5d3",
+    "feeling": "stressed",
+    "intensity": 5,
+    "year": 2021,
+    "month": 3,
+    "day": 18
+  },
+  {
+    "title": "stressed out today",
+    "id": "89b5e47e-b181-11ec-855d-8afc53ccf5d3",
+    "feeling": "stressed",
+    "intensity": 3,
+    "year": 2020,
+    "month": 12,
+    "day": 21
+  },
+  {
+    "title": "stressed out today",
+    "id": "8a0c27f8-b181-11ec-855d-8afc53ccf5d3",
+    "feeling": "stressed",
+    "intensity": 3,
+    "year": 2021,
+    "month": 12,
+    "day": 19
+  },
+  {
+    "title": "stressed out today",
+    "id": "8a5f7322-b181-11ec-855d-8afc53ccf5d3",
+    "feeling": "stressed",
+    "intensity": 2,
+    "year": 2021,
+    "month": 5,
+    "day": 19
+  },
+  {
+    "title": "stressed out today",
+    "id": "8aab50e4-b181-11ec-855d-8afc53ccf5d3",
+    "feeling": "stressed",
+    "intensity": 5,
+    "year": 2020,
+    "month": 7,
+    "day": 15
+  },
+  {
+    "title": "not feeling great today",
+    "id": "9c988754-b181-11ec-84ef-8afc53ccf5d3",
+    "feeling": "anxious",
+    "intensity": 5,
+    "year": 2021,
+    "month": 7,
+    "day": 23
+  },
+  {
+    "title": "not feeling great today",
+    "id": "9cee7b8c-b181-11ec-84ef-8afc53ccf5d3",
+    "feeling": "anxious",
+    "intensity": 5,
+    "year": 2021,
+    "month": 11,
+    "day": 8
+  },
+  {
+    "title": "not feeling great today",
+    "id": "9d4bb46e-b181-11ec-84ef-8afc53ccf5d3",
+    "feeling": "anxious",
+    "intensity": 3,
+    "year": 2020,
+    "month": 3,
+    "day": 21
+  },
+  {
+    "title": "not feeling great today",
+    "id": "9dd10eb6-b181-11ec-84ef-8afc53ccf5d3",
+    "feeling": "anxious",
+    "intensity": 5,
+    "year": 2020,
+    "month": 10,
+    "day": 8
+  },
+  {
+    "title": "not feeling great today",
+    "id": "9e4010c2-b181-11ec-84ef-8afc53ccf5d3",
+    "feeling": "anxious",
+    "intensity": 5,
+    "year": 2020,
+    "month": 4,
+    "day": 7
+  },
+  {
+    "title": "pleasantly suprised today",
+    "id": "bf7d9c5a-b181-11ec-b27d-8afc53ccf5d3",
     "feeling": "suprised",
-    "intensity": 2
+    "intensity": 3,
+    "year": 2020,
+    "month": 12,
+    "day": 5
   },
   {
-    "title": "not sure what happened",
-    "id": "d08982fe-b161-11ec-b03c-8afc53ccf5d3",
-    "date": "30/5/2021",
-    "feeling": "confused",
-    "intensity": 3
+    "title": "pleasantly suprised today",
+    "id": "bfd5c7d6-b181-11ec-b27d-8afc53ccf5d3",
+    "feeling": "suprised",
+    "intensity": 5,
+    "year": 2021,
+    "month": 5,
+    "day": 2
   },
   {
-    "title": "not sure what happened",
-    "id": "d10c07ec-b161-11ec-b03c-8afc53ccf5d3",
-    "date": "21/6/2020",
-    "feeling": "confused",
-    "intensity": 2
+    "title": "pleasantly suprised today",
+    "id": "c02f2862-b181-11ec-b27d-8afc53ccf5d3",
+    "feeling": "suprised",
+    "intensity": 3,
+    "year": 2020,
+    "month": 8,
+    "day": 19
   },
   {
-    "title": "not sure what happened",
-    "id": "d16edcb4-b161-11ec-b03c-8afc53ccf5d3",
-    "date": "17/5/2020",
-    "feeling": "confused",
-    "intensity": 2
+    "title": "pleasantly suprised today",
+    "id": "c08505fc-b181-11ec-b27d-8afc53ccf5d3",
+    "feeling": "suprised",
+    "intensity": 5,
+    "year": 2020,
+    "month": 7,
+    "day": 18
   },
   {
-    "title": "not sure what happened",
-    "id": "d1cdb040-b161-11ec-b03c-8afc53ccf5d3",
-    "date": "19/10/2020",
-    "feeling": "confused",
-    "intensity": 1
+    "title": "pleasantly suprised today",
+    "id": "c0d7f938-b181-11ec-b27d-8afc53ccf5d3",
+    "feeling": "suprised",
+    "intensity": 1,
+    "year": 2020,
+    "month": 5,
+    "day": 12
   },
   {
-    "title": "not sure what happened",
-    "id": "d22b8742-b161-11ec-b03c-8afc53ccf5d3",
-    "date": "5/11/2020",
-    "feeling": "confused",
-    "intensity": 5
+    "title": "pleasantly suprised today",
+    "id": "c135cc0c-b181-11ec-b27d-8afc53ccf5d3",
+    "feeling": "suprised",
+    "intensity": 5,
+    "year": 2020,
+    "month": 5,
+    "day": 29
   },
   {
-    "title": "not sure what happened",
-    "id": "d28b328c-b161-11ec-b03c-8afc53ccf5d3",
-    "date": "1/12/2021",
-    "feeling": "confused",
-    "intensity": 3
+    "title": "pleasantly suprised today",
+    "id": "c18f8f58-b181-11ec-b27d-8afc53ccf5d3",
+    "feeling": "suprised",
+    "intensity": 4,
+    "year": 2021,
+    "month": 12,
+    "day": 20
   },
   {
-    "title": "not sure what happened",
-    "id": "d3f7e642-b161-11ec-b03c-8afc53ccf5d3",
-    "date": "30/6/2020",
-    "feeling": "confused",
-    "intensity": 5
+    "title": "pleasantly suprised today",
+    "id": "c1e866e6-b181-11ec-b27d-8afc53ccf5d3",
+    "feeling": "suprised",
+    "intensity": 2,
+    "year": 2021,
+    "month": 10,
+    "day": 9
   },
   {
-    "title": "not sure what happened",
-    "id": "d451a574-b161-11ec-b03c-8afc53ccf5d3",
-    "date": "1/12/2021",
-    "feeling": "confused",
-    "intensity": 1
+    "title": "pleasantly suprised today",
+    "id": "c24398ae-b181-11ec-b27d-8afc53ccf5d3",
+    "feeling": "suprised",
+    "intensity": 4,
+    "year": 2020,
+    "month": 9,
+    "day": 6
   },
   {
-    "title": "pretty confused today",
-    "id": "d962aeb4-b161-11ec-8e53-8afc53ccf5d3",
-    "date": "6/12/2020",
-    "feeling": "confused",
-    "intensity": 1
+    "title": "pleasantly suprised today",
+    "id": "c29cbc40-b181-11ec-b27d-8afc53ccf5d3",
+    "feeling": "suprised",
+    "intensity": 2,
+    "year": 2020,
+    "month": 3,
+    "day": 21
   },
   {
-    "title": "pretty confused today",
-    "id": "d9ba2270-b161-11ec-8e53-8afc53ccf5d3",
-    "date": "25/8/2020",
-    "feeling": "confused",
-    "intensity": 3
+    "title": "unsure what happened today",
+    "id": "cf5c5ce2-b181-11ec-a3d1-8afc53ccf5d3",
+    "feeling": "surprised",
+    "intensity": 4,
+    "year": 2020,
+    "month": 11,
+    "day": 26
   },
   {
-    "title": "pretty confused today",
-    "id": "da0bc990-b161-11ec-8e53-8afc53ccf5d3",
-    "date": "14/11/2021",
-    "feeling": "confused",
-    "intensity": 2
+    "title": "unsure what happened today",
+    "id": "cfb7229e-b181-11ec-a3d1-8afc53ccf5d3",
+    "feeling": "surprised",
+    "intensity": 5,
+    "year": 2021,
+    "month": 1,
+    "day": 20
   },
   {
-    "title": "pretty confused today",
-    "id": "da591786-b161-11ec-8e53-8afc53ccf5d3",
-    "date": "17/8/2020",
-    "feeling": "confused",
-    "intensity": 5
+    "title": "unsure what happened today",
+    "id": "d00a4e7e-b181-11ec-a3d1-8afc53ccf5d3",
+    "feeling": "surprised",
+    "intensity": 1,
+    "year": 2021,
+    "month": 3,
+    "day": 24
   },
   {
-    "title": "average day today",
-    "id": "0c090e42-b17d-11ec-9b25-8afc53ccf5d3",
-    "date": "25/8/2020",
-    "feeling": "okay",
-    "intensity": 0
+    "title": "unsure what happened today",
+    "id": "d05d7f40-b181-11ec-a3d1-8afc53ccf5d3",
+    "feeling": "surprised",
+    "intensity": 5,
+    "year": 2021,
+    "month": 7,
+    "day": 30
   },
   {
-    "title": "average day today",
-    "id": "0c626bae-b17d-11ec-9b25-8afc53ccf5d3",
-    "date": "6/5/2021",
-    "feeling": "okay",
-    "intensity": 0
+    "title": "unsure what happened today",
+    "id": "d0b152a0-b181-11ec-a3d1-8afc53ccf5d3",
+    "feeling": "surprised",
+    "intensity": 3,
+    "year": 2020,
+    "month": 3,
+    "day": 27
   },
   {
-    "title": "average day today",
-    "id": "0cbd65b8-b17d-11ec-9b25-8afc53ccf5d3",
-    "date": "25/4/2021",
-    "feeling": "okay",
-    "intensity": 0
+    "title": "unsure what happened today",
+    "id": "d10ab624-b181-11ec-a3d1-8afc53ccf5d3",
+    "feeling": "surprised",
+    "intensity": 2,
+    "year": 2021,
+    "month": 4,
+    "day": 12
   },
   {
-    "title": "average day today",
-    "id": "0d264d1c-b17d-11ec-9b25-8afc53ccf5d3",
-    "date": "12/10/2020",
-    "feeling": "okay",
-    "intensity": 0
+    "title": "unsure what happened today",
+    "id": "d1689280-b181-11ec-a3d1-8afc53ccf5d3",
+    "feeling": "surprised",
+    "intensity": 5,
+    "year": 2020,
+    "month": 9,
+    "day": 8
   },
   {
-    "title": "bored",
-    "id": "1135520e-b17d-11ec-a531-8afc53ccf5d3",
-    "date": "13/12/2021",
-    "feeling": "okay",
-    "intensity": 0
-  },
-  {
-    "title": "bored",
-    "id": "119128a4-b17d-11ec-a531-8afc53ccf5d3",
-    "date": "14/4/2020",
-    "feeling": "okay",
-    "intensity": 0
-  },
-  {
-    "title": "bored",
-    "id": "11ef0d02-b17d-11ec-a531-8afc53ccf5d3",
-    "date": "8/5/2021",
-    "feeling": "okay",
-    "intensity": 0
-  },
-  {
-    "title": "nice weather",
-    "id": "1bdacb8a-b17d-11ec-ac49-8afc53ccf5d3",
-    "date": "20/5/2020",
-    "feeling": "happy",
-    "intensity": 2
-  },
-  {
-    "title": "nice weather",
-    "id": "1c359178-b17d-11ec-ac49-8afc53ccf5d3",
-    "date": "2/12/2020",
-    "feeling": "happy",
-    "intensity": 3
-  },
-  {
-    "title": "nice weather",
-    "id": "1c88d6b2-b17d-11ec-ac49-8afc53ccf5d3",
-    "date": "11/10/2020",
-    "feeling": "happy",
-    "intensity": 5
-  },
-  {
-    "title": "great day",
-    "id": "2056a62a-b17d-11ec-a444-8afc53ccf5d3",
-    "date": "18/2/2020",
-    "feeling": "happy",
-    "intensity": 1
-  },
-  {
-    "title": "great day",
-    "id": "20ac1574-b17d-11ec-a444-8afc53ccf5d3",
-    "date": "15/4/2021",
-    "feeling": "happy",
-    "intensity": 2
-  },
-  {
-    "title": "great day",
-    "id": "217ee1e8-b17d-11ec-a444-8afc53ccf5d3",
-    "date": "16/1/2020",
-    "feeling": "happy",
-    "intensity": 4
-  },
-  {
-    "title": "bad day today",
-    "id": "2687df8c-b17d-11ec-8333-8afc53ccf5d3",
-    "date": "22/6/2021",
-    "feeling": "sad",
-    "intensity": 3
-  },
-  {
-    "title": "bad day today",
-    "id": "26e51594-b17d-11ec-8333-8afc53ccf5d3",
-    "date": "26/3/2020",
-    "feeling": "sad",
-    "intensity": 4
-  },
-  {
-    "title": "bad day today",
-    "id": "2737783e-b17d-11ec-8333-8afc53ccf5d3",
-    "date": "13/12/2021",
-    "feeling": "sad",
-    "intensity": 3
-  },
-  {
-    "title": "feeling down",
-    "id": "35197a42-b17d-11ec-9ac0-8afc53ccf5d3",
-    "date": "3/8/2021",
-    "feeling": "sad",
-    "intensity": 5
-  },
-  {
-    "title": "feeling down",
-    "id": "357a8ae4-b17d-11ec-9ac0-8afc53ccf5d3",
-    "date": "30/8/2021",
-    "feeling": "sad",
-    "intensity": 1
-  },
-  {
-    "title": "feeling down",
-    "id": "35d9efde-b17d-11ec-9ac0-8afc53ccf5d3",
-    "date": "17/4/2021",
-    "feeling": "sad",
-    "intensity": 3
-  },
-  {
-    "title": "really mad today",
-    "id": "4cea90de-b17d-11ec-b7c7-8afc53ccf5d3",
-    "date": "16/12/2021",
-    "feeling": "angry",
-    "intensity": 5
-  },
-  {
-    "title": "really mad today",
-    "id": "4d481614-b17d-11ec-b7c7-8afc53ccf5d3",
-    "date": "8/1/2021",
-    "feeling": "angry",
-    "intensity": 4
-  },
-  {
-    "title": "really mad today",
-    "id": "4da6a3a0-b17d-11ec-b7c7-8afc53ccf5d3",
-    "date": "7/6/2021",
-    "feeling": "angry",
-    "intensity": 1
-  },
-  {
-    "title": "bad mood",
-    "id": "53626e5a-b17d-11ec-bf69-8afc53ccf5d3",
-    "date": "19/8/2021",
-    "feeling": "angry",
-    "intensity": 1
-  },
-  {
-    "title": "bad mood",
-    "id": "53be1bb0-b17d-11ec-bf69-8afc53ccf5d3",
-    "date": "10/10/2021",
-    "feeling": "angry",
-    "intensity": 5
-  },
-  {
-    "title": "bad mood",
-    "id": "541ff678-b17d-11ec-bf69-8afc53ccf5d3",
-    "date": "7/6/2020",
-    "feeling": "angry",
-    "intensity": 2
+    "title": "unsure what happened today",
+    "id": "d1be2358-b181-11ec-a3d1-8afc53ccf5d3",
+    "feeling": "surprised",
+    "intensity": 5,
+    "year": 2020,
+    "month": 5,
+    "day": 3
   }
 ]
