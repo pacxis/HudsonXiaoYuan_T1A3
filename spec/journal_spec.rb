@@ -1,4 +1,4 @@
-require './journal.rb'
+require './classes.rb'
 
 describe Menu do
     it 'can be instantiated' do
