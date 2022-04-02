@@ -1,3 +1,2 @@
-def remove_id(hash)
-    hash.each do |a|
-        puts a.slice(:title)
+def display_entry(entry)
+    sorted_entries[entry.to_i - 1][:id]

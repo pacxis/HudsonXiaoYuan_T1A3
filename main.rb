@@ -130,13 +130,15 @@ while selection != main_menu.menu_items[-1]
                 puts "\nJournal Entry #{index + 1}".underline
                 ap hash.slice(:title, :feeling, :intensity, :day, :month, :year)
             end
-
+            
             selection = prompt.ask("Enter the Journal Entry number you would like to view: ") do |num|
                             num.in "1-#{sorted_entries.length}"
                             num.messages[:range?] = "Invalid journal entry selection, input a number from 1 to #{sorted_entries.length}"
                         end
+            entry = File.readlines("Entries/#{sorted_entries[selection.to_i - 1][:id]}.txt")
+            puts entry
         end
-        
+
     when main_menu.menu_items[2], '-s'
         begin
             raise NoEntriesError if j_index.empty?
