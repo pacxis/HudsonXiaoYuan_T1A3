@@ -55,9 +55,9 @@ while selection != main_menu.menu_items[-1]
                         end
                     end
         entry = prompt.ask("Type out your journal entry: ")
-        
+
         selection = prompt.yes?("Do you want to save this entry?")
-    
+
         if selection == true
             file = File.open("#{id}.txt", 'w')
             FileUtils.mv("#{id}.txt", "Entries/#{id}.txt")
@@ -81,6 +81,7 @@ while selection != main_menu.menu_items[-1]
         else
             puts "Journal entry discarded"
         end
+        
     when main_menu.menu_items[1], '-v'
         begin
             raise NoEntriesError if j_index.empty?
@@ -94,7 +95,7 @@ while selection != main_menu.menu_items[-1]
 
             case selection
             when view_menu.menu_items[0]
-                while selection != view_menu_after.menu_items[-1] do
+                while selection != view_menu_after.menu_items[-1]
                     sorted_entries = j_index.sort_by { |h| h[:date].split('/').reverse }
                     sorted_entries.each_with_index do |hash, index|
                         puts "\nJournal Entry #{index + 1}".underline
@@ -143,7 +144,8 @@ while selection != main_menu.menu_items[-1]
             when search_menu.menu_items[2]
 
             when search_menu.menu_items[3]
-
+            end
+        end
     when main_menu.menu_items[3]
         exit
     else
@@ -154,7 +156,7 @@ while selection != main_menu.menu_items[-1]
         end
         exit
     end
-    exit unless ARGV[0].nil?
+    ARGV.clear
 end
 
 
