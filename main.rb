@@ -133,23 +133,27 @@ while selection != main_menu.menu_items[-1]
             puts e.message
         end
 
-        s_selection = prompt.select("What would you like to do?", search_menu.menu_items)
+        s_selection = nil
         while s_selection != search_menu.menu_items[-1]
+            s_selection = prompt.select("What would you like to do?", search_menu.menu_items)
             parameters = {}
             case s_selection
             when search_menu.menu_items[0]
+                sorted_index = j_index.select { |hash| hash[:date][6..9] == parameters[:year] } if parameters.has_key?(:year)
+                ap sorted_index
+                gets.chomp
             when search_menu.menu_items[1]
-                
+                puts "hi"
             when search_menu.menu_items[2]
                 parameters.clear
             when search_menu.menu_items[3]
-                year = get_date("year", "1-9999").to_i
+                year = get_date("year", "1-9999")
                 parameters.merge!(year: year)
             when search_menu.menu_items[4]
-                month.to_i = get_date("month", "1-12").to_i
+                month.to_i = get_date("month", "1-12")
                 parameters.merge!(month: month)
             when search_menu.menu_items[5]
-                day.to_i = get_date("day", "1-31").to_i
+                day.to_i = get_date("day", "1-31")
                 parameters.merge!(day: day)
             when search_menu.menu_items[6]
                 title = prompt.ask("Enter the title parameter: ")
@@ -157,12 +161,21 @@ while selection != main_menu.menu_items[-1]
             when search_menu.menu_items[7]
                 feeling = prompt.select("Select the feeling parameter:", entry_categories.menu_items)
                 parameters.merge!(feeling: feeling)
+                if feeling == "okay"
+                    intensity == 0 
+                    parameters.merge!(intensity: intensity)
+                end
             when search_menu.menu_items[8]
-                intensity = prompt.ask("Enter the intensity parameter: ") do |a|
-                a.convert :int
-                a.in "1-5"
-                a.messages[:range?] = "Invalid input, enter a number from 1 to 5"
-                parameters.merge!(intensity: intensity)
+                if feeling == "okay"
+                    puts "Intensity defaults to 0 if feeling parameter is 'okay'"
+                else
+                    intensity = prompt.ask("Enter the intensity parameter: ") do |a|
+                    a.convert :int
+                    a.in "1-5"
+                    a.messages[:range?] = "Invalid input, enter a number from 1 to 5"
+                    parameters.merge!(intensity: intensity)
+                    end
+                end
             end
         end
     when main_menu.menu_items[3]

@@ -20,6 +20,5 @@ def get_date(x, range)
         a.in range
         a.messages[:range?] = "Invalid input, select a number from #{range}"
     end
-    x
 end
    
