@@ -16,18 +16,17 @@ entry_categories = Emotions.new("okay", "happy", "sad", "angry", "stressed", "an
 
 view_menu = Menu.new("By date", "By feeling", "By title alphabetical order", "Return to main menu")
 
-view_menu_after = Menu.new("View another entry", "Return to previous menu")
-
 search_menu = Menu.new(
-    "Enter date parameters",
-    "Enter title parameters",
-    "Enter feeling parameters",
-    "Enter intensity parameters",
     "Begin search",
+    "View current search parameters",
+    "Enter year parameter",
+    "Enter month parameter",
+    "Enter day parameter",
+    "Enter title parameter",
+    "Enter feeling parameter",
+    "Enter intensity parameter",
     "Return to main menu"
 )
-     
-    
 
 
 j_index = JSON.load_file('journal_index.json', symbolize_names: true)
@@ -81,7 +80,7 @@ while selection != main_menu.menu_items[-1]
         else
             puts "Journal entry discarded"
         end
-        
+
     when main_menu.menu_items[1], '-v'
         begin
             raise NoEntriesError if j_index.empty?
@@ -133,16 +132,15 @@ while selection != main_menu.menu_items[-1]
             puts e.message
         end
 
-        s_selection = ""
+        s_selection = prompt.select("What would you like to do?", search_menu.menu_items)
         while s_selection != search_menu.menu_items[-1]
-            s_selection = prompt.select("How would you like to search your journal entries?", search_menu.menu_items)
             case s_selection
-            when search_menu.menu_items[0]
-                
-            when search_menu.menu_items[1]
-                
-            when search_menu.menu_items[2]
-
+            when search_menu.menu_items[3]
+                year = get_date("year", "1-9999")
+            when search_menu.menu_items[4]
+                month = get_date("month", "1-12")
+            when search_menu.menu_items[5]
+                day = get_date("day", "1-31")
             when search_menu.menu_items[3]
             end
         end

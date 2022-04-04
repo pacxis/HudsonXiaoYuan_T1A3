@@ -36,3 +36,8 @@ class NoEntriesError < StandardError
     end
 end
 
+class InvalidDate < StandardError
+    def message
+        return "Invalid entry, must be an integer"
+    end
+end

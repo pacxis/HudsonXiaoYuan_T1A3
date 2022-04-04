@@ -12,3 +12,14 @@ def display_entry(ent, options)
     puts File.readlines("Entries/#{ent[selection.to_i - 1][:id]}.txt")
     return prompt.select("What would you like to do?", options)
 end
+
+def get_date(x, range)
+    prompt = TTY::Prompt.new
+    x = prompt.ask("Input the #{x}: ") do |a|
+        a.convert :int
+        a.in range
+        a.messages[:range?] = "Invalid input, select a number from #{range}"
+    end
+    x
+end
+   
