@@ -18,7 +18,8 @@ view_menu = Menu.new("By date", "By feeling", "By title alphabetical order", "Re
 
 search_menu = Menu.new(
     "Begin search",
-    "View current search parameters",
+    "View search parameters",
+    "Clear search parameters",
     "Enter year parameter",
     "Enter month parameter",
     "Enter day parameter",
@@ -134,14 +135,34 @@ while selection != main_menu.menu_items[-1]
 
         s_selection = prompt.select("What would you like to do?", search_menu.menu_items)
         while s_selection != search_menu.menu_items[-1]
+            parameters = {}
             case s_selection
+            when search_menu.menu_items[0]
+            when search_menu.menu_items[1]
+                
+            when search_menu.menu_items[2]
+                parameters.clear
             when search_menu.menu_items[3]
-                year = get_date("year", "1-9999")
+                year = get_date("year", "1-9999").to_i
+                parameters.merge!(year: year)
             when search_menu.menu_items[4]
-                month = get_date("month", "1-12")
+                month.to_i = get_date("month", "1-12").to_i
+                parameters.merge!(month: month)
             when search_menu.menu_items[5]
-                day = get_date("day", "1-31")
-            when search_menu.menu_items[3]
+                day.to_i = get_date("day", "1-31").to_i
+                parameters.merge!(day: day)
+            when search_menu.menu_items[6]
+                title = prompt.ask("Enter the title parameter: ")
+                parameters.merge!(title: title)
+            when search_menu.menu_items[7]
+                feeling = prompt.select("Select the feeling parameter:", entry_categories.menu_items)
+                parameters.merge!(feeling: feeling)
+            when search_menu.menu_items[8]
+                intensity = prompt.ask("Enter the intensity parameter: ") do |a|
+                a.convert :int
+                a.in "1-5"
+                a.messages[:range?] = "Invalid input, enter a number from 1 to 5"
+                parameters.merge!(intensity: intensity)
             end
         end
     when main_menu.menu_items[3]

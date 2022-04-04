@@ -33,3 +33,7 @@ require 'date'
 
 a = Date.parse("2021-11-12")
 puts a.strftime("%Y")
+
+b = {}
+b.
+puts b
