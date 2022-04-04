@@ -41,3 +41,9 @@ class InvalidDate < StandardError
         return "Invalid entry, must be an integer"
     end
 end
+
+class NoResultsError < StandardError
+    def message
+        return "No journal entries matched the specified search parameters"
+    end
+end

@@ -1,4 +1,5 @@
 require 'date'
+require 'tty-prompt'
 # day = rand(1..30)
 # if day.between?(1, 9)
 #     day = '0' + day.to_s
@@ -30,14 +31,3 @@ require 'date'
 #         end
 #         file.close
 #         exit
-
-a = Date.parse("2021-11-12")
-puts a.strftime("%Y")
-
-b = "1000"
-a = "1000"
-if a == b
-    puts "true"
-else
-    puts "false"
-end

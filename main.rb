@@ -16,6 +16,8 @@ entry_categories = Emotions.new("okay", "happy", "sad", "angry", "stressed", "an
 
 view_menu = Menu.new("By date", "By feeling", "By title alphabetical order", "Return to main menu")
 
+view_menu_after = Menu.new("View another entry", "Return to previous menu")
+
 search_menu = Menu.new(
     "Begin search",
     "View search parameters",
@@ -28,7 +30,6 @@ search_menu = Menu.new(
     "Enter intensity parameter",
     "Return to main menu"
 )
-
 
 j_index = JSON.load_file('journal_index.json', symbolize_names: true)
 prompt = TTY::Prompt.new
@@ -136,21 +137,50 @@ while selection != main_menu.menu_items[-1]
         s_selection = nil
         parameters = {}
         while s_selection != search_menu.menu_items[-1]
+            s_result = []
             s_selection = prompt.select("What would you like to do?", search_menu.menu_items, per_page: 10)
             case s_selection
             when search_menu.menu_items[0]
-                # a = j_index.select { |hash| hash[:date][6..9].to_i == parameters[:year] } if parameters.key?(:year)
-                # b = a.select { |hash| hash[:date][3..4].to_i == parameters[:year] } if parameters.key?(:month)
-                filter = {feeling: "happy", poo: "yay"}
-                a = j_index.select do |hash|
-                    parameters.slice(:title, :feeling, :intensity).all? do |key, value|
-                        value == hash[key]
-                    end
+                tfi_param = parameters.slice(:title, :feeling, :intensity)
+                s_result = if tfi_param.empty?
+                               j_index
+                           else
+                               j_index.select do |hash|
+                                   tfi_param.all? do |key, value|
+                                       value == hash[key]
+                                   end
+                               end
+                           end
+                if parameters.key?(:year)
+                    s_result = s_result.select { |hash| hash[:date][6..9].to_i == parameters[:year] }
                 end
-                ap a
-                gets.chomp
+                if parameters.key?(:month)
+                    s_result = s_result.select { |hash| hash[:date][3..4].to_i == parameters[:month] }
+                end
+                if parameters.key?(:day)
+                    s_result = s_result.select { |hash| hash[:date][0..1].to_i == parameters[:day] }
+                end
+                while selection != view_menu_after.menu_items[-1]
+                    s_result.each_with_index do |hash, index|
+                        puts "\nJournal Entry #{index + 1}".underline
+                        ap hash.slice(:title, :date, :feeling, :intensity)
+                    end
+                    if s_result.empty?
+                        begin
+                            raise NoResultsError
+                        rescue NoResultsError => e
+                            puts e.message
+                        end
+                        break
+                    end
+                    selection = display_entry(s_result, view_menu_after.menu_items)
+                end
             when search_menu.menu_items[1]
-                ap parameters
+                if parameters.empty?
+                    puts
+                else
+                    ap parameters
+                end
             when search_menu.menu_items[2]
                 parameters.clear
                 puts "Search parameters cleared"
@@ -167,10 +197,10 @@ while selection != main_menu.menu_items[-1]
                 title = prompt.ask("Enter the title parameter: ")
                 parameters[:title] = title
             when search_menu.menu_items[7]
-                feeling = prompt.select("Select the feeling parameter:", entry_categories.menu_items)
+                feeling = prompt.select("Select the feeling parameter:", entry_categories.feelings, per_page: 10)
                 parameters[:feeling] = feeling
                 if feeling == "okay"
-                    intensity = 0 
+                    intensity = 0
                     parameters[:intensity] = intensity
                 end
             when search_menu.menu_items[8]
@@ -178,11 +208,10 @@ while selection != main_menu.menu_items[-1]
                     puts "Intensity defaults to 0 if feeling parameter is 'okay'"
                 else
                     intensity = prompt.ask("Enter the intensity parameter: ") do |a|
-                    a.convert :int
                     a.in "1-5"
                     a.messages[:range?] = "Invalid input, enter a number from 1 to 5"
-                    parameters[:intensity] = intensity
                     end
+                    parameters[:intensity] = intensity.to_i
                 end
             end
         end
@@ -198,7 +227,6 @@ while selection != main_menu.menu_items[-1]
     end
     ARGV.clear
 end
-
 
 
 
