@@ -21,6 +21,20 @@ class Emotions
     end
 end
 
+class Parameters
+    attr_accessor :title :feeling :intensity :year :month :date
+
+    def initialize(title, feeling, intensity, year, month, day)
+        @title = title
+        @feeling = feeling
+        @intensity = intensity
+        @year = year
+        @month = month
+        @day = day
+    end
+
+    
+
 class InvalidArgument < StandardError
     def message
         return "Invalid command line argument, valid arguments are as follows:

@@ -8,3 +8,7 @@ describe Menu do
     end
 end
 
+describe Parameters do
+    it 'searches journal index by specified parameters' do
+        search = Parameters.new
+        
