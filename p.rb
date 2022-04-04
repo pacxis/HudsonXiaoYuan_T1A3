@@ -34,5 +34,10 @@ require 'date'
 a = Date.parse("2021-11-12")
 puts a.strftime("%Y")
 
-b = "hello"
-puts b[0..2]
+b = "1000"
+a = "1000"
+if a == b
+    puts "true"
+else
+    puts "false"
+end

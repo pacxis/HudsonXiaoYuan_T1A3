@@ -134,36 +134,44 @@ while selection != main_menu.menu_items[-1]
         end
 
         s_selection = nil
+        parameters = {}
         while s_selection != search_menu.menu_items[-1]
-            s_selection = prompt.select("What would you like to do?", search_menu.menu_items)
-            parameters = {}
+            s_selection = prompt.select("What would you like to do?", search_menu.menu_items, per_page: 10)
             case s_selection
             when search_menu.menu_items[0]
-                sorted_index = j_index.select { |hash| hash[:date][6..9] == parameters[:year] } if parameters.has_key?(:year)
-                ap sorted_index
+                # a = j_index.select { |hash| hash[:date][6..9].to_i == parameters[:year] } if parameters.key?(:year)
+                # b = a.select { |hash| hash[:date][3..4].to_i == parameters[:year] } if parameters.key?(:month)
+                filter = {feeling: "happy", poo: "yay"}
+                a = j_index.select do |hash|
+                    parameters.slice(:title, :feeling, :intensity).all? do |key, value|
+                        value == hash[key]
+                    end
+                end
+                ap a
                 gets.chomp
             when search_menu.menu_items[1]
-                puts "hi"
+                ap parameters
             when search_menu.menu_items[2]
                 parameters.clear
+                puts "Search parameters cleared"
             when search_menu.menu_items[3]
                 year = get_date("year", "1-9999")
-                parameters.merge!(year: year)
+                parameters[:year] = year
             when search_menu.menu_items[4]
                 month.to_i = get_date("month", "1-12")
-                parameters.merge!(month: month)
+                parameters[:month] = month
             when search_menu.menu_items[5]
                 day.to_i = get_date("day", "1-31")
-                parameters.merge!(day: day)
+                parameters[:day] = day
             when search_menu.menu_items[6]
                 title = prompt.ask("Enter the title parameter: ")
-                parameters.merge!(title: title)
+                parameters[:title] = title
             when search_menu.menu_items[7]
                 feeling = prompt.select("Select the feeling parameter:", entry_categories.menu_items)
-                parameters.merge!(feeling: feeling)
+                parameters[:feeling] = feeling
                 if feeling == "okay"
-                    intensity == 0 
-                    parameters.merge!(intensity: intensity)
+                    intensity = 0 
+                    parameters[:intensity] = intensity
                 end
             when search_menu.menu_items[8]
                 if feeling == "okay"
@@ -173,7 +181,7 @@ while selection != main_menu.menu_items[-1]
                     a.convert :int
                     a.in "1-5"
                     a.messages[:range?] = "Invalid input, enter a number from 1 to 5"
-                    parameters.merge!(intensity: intensity)
+                    parameters[:intensity] = intensity
                     end
                 end
             end
