@@ -16,7 +16,7 @@ entry_categories = Emotions.new("okay", "happy", "sad", "angry", "stressed", "an
 
 view_menu = Menu.new("By date", "By feeling", "By title alphabetical order", "Return to main menu")
 
-view_menu_after = Menu.new("View another entry", "Return to previous menu")
+view_menu_after = Menu.new("View another entry", "Delete this entry", "Return to previous menu")
 
 search_menu = Menu.new(
     "Begin search",
@@ -113,6 +113,9 @@ while selection != main_menu.menu_items[-1]
                         ap hash.slice(:feeling, :intensity, :title, :date)
                     end
                     selection = display_entry(sorted_entries, view_menu_after.menu_items)
+                    if selection = view_menu_after.menu_items[1]
+                        if prompt.yes?("Are you sure want to delete this entry?")
+                            
                 end
 
             when view_menu.menu_items[2]

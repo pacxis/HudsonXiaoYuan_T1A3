@@ -1,8 +1,9 @@
 require 'tty-prompt'
 
+j_index = JSON.load_file('journal_index.json', symbolize_names: true)
 
-
-def display_entry(ent, options)
+def display_entry(ent, options, delete)
+    m_selection = nil
     prompt = TTY::Prompt.new
     selection = prompt.ask("Enter the Journal Entry number you would like to view: ") do |num|
                     num.in "1-#{ent.length}"
@@ -10,7 +11,11 @@ def display_entry(ent, options)
     end
     system "clear"
     puts File.readlines("Entries/#{ent[selection.to_i - 1][:id]}.txt")
-    return prompt.select("What would you like to do?", options)
+    while m_selection != options[-1]
+        m_selection = prompt.select("What would you like to do?", options)
+            if m_selection == options[1] && prompt.yes?("Are you sure you want to delete this entry?")
+                File.delete("Entries/#{ent[selection.to_i - 1][:id]}.txt")
+
 end
 
 def get_date(xyz, range)

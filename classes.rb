@@ -1,3 +1,5 @@
+require 'json'
+
 class Menu
     attr_reader :menu_items
     def initialize(*menu_items)
@@ -22,18 +24,21 @@ class Emotions
 end
 
 class Parameters
-    attr_accessor :title :feeling :intensity :year :month :date
+    attr_accessor :title, :feeling, :intensity, :year, :month, :date
 
     def initialize(title, feeling, intensity, year, month, day)
         @title = title
         @feeling = feeling
         @intensity = intensity
-        @year = year
-        @month = month
-        @day = day
     end
 
-    
+    def view_by_title()
+        j_index = JSON.load_file('journal_index.json', symbolize_names: true)
+        sorted_entries = j_index.sort_by { |h| h[:title] }
+                
+    end
+end
+
 
 class InvalidArgument < StandardError
     def message

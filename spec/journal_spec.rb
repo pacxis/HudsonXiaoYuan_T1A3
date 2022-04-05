@@ -2,13 +2,17 @@ require './classes.rb'
 
 describe Menu do
     it 'can be instantiated' do
-        option1 = Menu.new("New Journal Entry")
-        expect(option1).not_to be_nil
-        expect(option1).to be_an_instance_of Menu
+        my_menu = Menu.new("New Journal Entry")
+        expect(my_menu).not_to be_nil
+        expect(my_menu).to be_an_instance_of Menu
     end
 end
 
 describe Parameters do
     it 'searches journal index by specified parameters' do
-        search = Parameters.new
-        
+        view = Parameters.new()
+
+        expect(view.view_by_title).not_to be_nil
+    end
+end
+

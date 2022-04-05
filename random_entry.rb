@@ -31,3 +31,5 @@ require 'tty-prompt'
 #         end
 #         file.close
 #         exit
+prompt = TTY::Prompt.new
+puts prompt.yes?("Do you want to save this entry?")
