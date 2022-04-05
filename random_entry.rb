@@ -52,7 +52,22 @@ j_index = [
 # puts .index{ |t| t[:id] == "deez" }
 # puts "bun"
 
-c = "pro skater"
-if c.include? "pro"
-    puts "true"
+def display_entry(ent, options)
+    prompt = TTY::Prompt.new
+    selection = prompt.ask("Enter the Journal Entry number you would like to view: ") do |num|
+                    num.in "1-#{ent.length}"
+                    num.messages[:range?] = "Invalid journal entry selection, input a number from 1 to #{ent.length}"
+    end
+    system "clear"
+    puts File.readlines("Entries/#{ent[selection.to_i - 1][:id]}.txt")
+    return selection
+end
+
+def delete_entry(sel, ent)
+    j_index = JSON.load_file('journal_index.json', symbolize_names: true)
+    j_index.delete_at(j_index.index{ |hash| hash[:id] == ent[sel.to_i - 1][:id] })
+    ap j_index
+    File.open('test.json', 'w') do |f|
+        f.puts JSON.pretty_generate(j_index)
+    end
 end

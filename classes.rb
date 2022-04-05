@@ -49,6 +49,12 @@ class InvalidArgument < StandardError
     end
 end
 
+class InvalidTitleError < StandardError
+    def message
+        return "Title field cannot be empty"
+    end
+end
+
 class NoEntriesError < StandardError
     def message
         return "There are no journal entries yet"

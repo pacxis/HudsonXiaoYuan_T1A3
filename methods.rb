@@ -1,8 +1,8 @@
 require 'tty-prompt'
+require 'json'
 
-
-
-def display_entry(ent, options)
+def display_delete_entry(ent, options)
+    j_index = JSON.load_file('journal_index.json', symbolize_names: true)
     m_selection = nil
     prompt = TTY::Prompt.new
     selection = prompt.ask("Enter the Journal Entry number you would like to view: ") do |num|
@@ -11,19 +11,15 @@ def display_entry(ent, options)
     end
     system "clear"
     puts File.readlines("Entries/#{ent[selection.to_i - 1][:id]}.txt")
- 
     m_selection = prompt.select("What would you like to do?", options)
     if m_selection == options[1] && prompt.yes?("Are you sure you want to delete this entry?")
-        # File.delete("Entries/#{ent[selection.to_i - 1][:id]}.txt") need this------
-        # a.index{ |t| t[:id] == "deez" }
+        File.delete("Entries/#{ent[selection.to_i - 1][:id]}.txt")
         j_index = JSON.load_file('journal_index.json', symbolize_names: true)
-        # j_index.delete_at()
         j_index.delete_at(j_index.index{ |hash| hash[:id] == ent[selection.to_i - 1][:id] })
-        ap j_index
-        File.open('test.json', 'w') do |f|
+        File.open('journal_index.json', 'w') do |f|
             f.puts JSON.pretty_generate(j_index)
         end
-        
+        m_selection = nil
         return options[-1]
     else
         return m_selection
@@ -38,4 +34,3 @@ def get_date(xyz, range)
         a.messages[:range?] = "Invalid input, select a number from #{range}"
     end
 end
-   

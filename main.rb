@@ -10,7 +10,7 @@ require 'colorize'
 require_relative 'classes'
 require_relative 'methods'
 
-main_menu = Menu.new("New Journal Entry", "View All Journal Entries", "Search Journal Entries", "Exit")
+main_menu = Menu.new("New Journal Entry", "View All Journal Entries", "Search Journal Entries", "Reset journal", "Exit")
 
 entry_categories = Emotions.new("okay", "happy", "sad", "angry", "stressed", "anxious", "suprised", "confused")
 
@@ -45,7 +45,13 @@ while selection != main_menu.menu_items[-1]
 
         date = Date.today.strftime("%d/%m/%Y")
         id = UUIDTools::UUID.timestamp_create.to_s
-        title = prompt.ask("Please enter the title: ")
+        begin
+            title = prompt.ask("Please enter the title: ")
+            raise InvalidTitleError if title.strip.length.zero?
+        rescue InvalidTitleError => e
+            e.message
+            retry
+        end
         feeling = prompt.select("What is your overall feeling today?", entry_categories.feelings)
         intensity = if feeling == "okay"
                         0
@@ -76,6 +82,7 @@ while selection != main_menu.menu_items[-1]
               intensity: intensity
             }
 
+            j_index = JSON.load_file('journal_index.json', symbolize_names: true)
             File.open('journal_index.json', 'w') do |f|
                 f.puts JSON.pretty_generate(j_index << entry_info)
             end
@@ -98,16 +105,18 @@ while selection != main_menu.menu_items[-1]
             case selection
             when view_menu.menu_items[0]
                 while selection != view_menu_after.menu_items[-1]
+                    j_index = JSON.load_file('journal_index.json', symbolize_names: true)
                     sorted_entries = j_index.sort_by { |h| h[:date].split('/').reverse }
                     sorted_entries.each_with_index do |hash, index|
                         puts "\nJournal Entry #{index + 1}".underline
                         ap hash.slice(:date, :title, :feeling, :intensity)
                     end
-                    selection = display_entry(sorted_entries, view_menu_after.menu_items)
+                    selection = display_delete_entry(sorted_entries, view_menu_after.menu_items)
                 end
 
             when view_menu.menu_items[1]
                 while selection != view_menu_after.menu_items[-1]
+                    j_index = JSON.load_file('journal_index.json', symbolize_names: true)
                     sorted_entries = j_index.sort { |a, b| [a[:feeling], a[:intensity]] <=> [b[:feeling], b[:intensity]] }
                     sorted_entries.each_with_index do |hash, index|
                         puts "\nJournal Entry #{index + 1}".underline
@@ -118,6 +127,7 @@ while selection != main_menu.menu_items[-1]
 
             when view_menu.menu_items[2]
                 while selection != view_menu_after.menu_items[-1]
+                    j_index = JSON.load_file('journal_index.json', symbolize_names: true)
                     sorted_entries = j_index.sort_by { |h| h[:title] }
                     sorted_entries.each_with_index do |hash, index|
                         puts "\nJournal Entry #{index + 1}".underline
@@ -155,13 +165,13 @@ while selection != main_menu.menu_items[-1]
                                end
                            end
                 if parameters.key?(:year)
-                    s_result = s_result.select { |hash| hash[:date][6..9].to_i == parameters[:year] }
+                    s_result = s_result.select { |hash| hash[:date][6..9].to_i == parameters[:year].to_i }
                 end
                 if parameters.key?(:month)
-                    s_result = s_result.select { |hash| hash[:date][3..4].to_i == parameters[:month] }
+                    s_result = s_result.select { |hash| hash[:date][3..4].to_i == parameters[:month].to_i }
                 end
                 if parameters.key?(:day)
-                    s_result = s_result.select { |hash| hash[:date][0..1].to_i == parameters[:day] }
+                    s_result = s_result.select { |hash| hash[:date][0..1].to_i == parameters[:day].to_i }
                 end
                 while selection != view_menu_after.menu_items[-1]
                     s_result.each_with_index do |hash, index|
@@ -176,11 +186,12 @@ while selection != main_menu.menu_items[-1]
                         end
                         break
                     end
-                    selection = display_entry(s_result, view_menu_after.menu_items)
+                    selection = display_delete_entry(s_result, view_menu_after.menu_items)
+                    system "clear"
                 end
             when search_menu.menu_items[1]
                 if parameters.empty?
-                    puts
+                    puts "No parameters specified yet"
                 else
                     ap parameters
                 end
@@ -191,10 +202,10 @@ while selection != main_menu.menu_items[-1]
                 year = get_date("year", "1-9999")
                 parameters[:year] = year
             when search_menu.menu_items[4]
-                month.to_i = get_date("month", "1-12")
+                month = get_date("month", "1-12")
                 parameters[:month] = month
             when search_menu.menu_items[5]
-                day.to_i = get_date("day", "1-31")
+                day = get_date("day", "1-31")
                 parameters[:day] = day
             when search_menu.menu_items[6]
                 title = prompt.ask("Enter the title parameter: ")
@@ -218,7 +229,17 @@ while selection != main_menu.menu_items[-1]
                 end
             end
         end
-    when main_menu.menu_items[3]
+    when main_menu.menu_items[3], '-r'
+        if prompt.ask("All entries and entry data will be deleted, to confirm type 'delete all': ") == "delete all"
+            File.open('journal_index.json', 'w') do |f|
+                f.puts JSON.pretty_generate([])
+            end
+            FileUtils.rm_rf(Dir['Entries/*'])
+            prompt.keypress("All journal entries and entry data have been deleted. Press any key to return to main menu")
+        else
+            prompt.keypress("No changes have been made. Press any key to return to main menu")
+        end
+    when main_menu.menu_items[-1]
         exit
     else
         begin
