@@ -31,5 +31,24 @@ require 'tty-prompt'
 #         end
 #         file.close
 #         exit
-prompt = TTY::Prompt.new
-puts prompt.yes?("Do you want to save this entry?")
+j_index = [
+  {
+    "title": "tomato",
+    "id": "deez",
+  },
+  {
+    "title": "apricot",
+    "id": "pobe",
+  }
+]
+
+puts a
+
+# a.delete_at(index(a.select{ |t| t[:id] == )
+
+# puts a.index(a.select{ |t| t[:id] == "deez" } )
+
+j_index.index{ |hash| hash[ent[selection.to_i - 1][:id]] }
+
+# puts .index{ |t| t[:id] == "deez" }
+# puts "bun"

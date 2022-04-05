@@ -68,7 +68,7 @@ while selection != main_menu.menu_items[-1]
             file << entry
 
             entry_info = {
-              title: title,
+              title: title.downcase,
               id: id,
               date: date,
               feeling: feeling,
@@ -113,9 +113,6 @@ while selection != main_menu.menu_items[-1]
                         ap hash.slice(:feeling, :intensity, :title, :date)
                     end
                     selection = display_entry(sorted_entries, view_menu_after.menu_items)
-                    if selection = view_menu_after.menu_items[1]
-                        if prompt.yes?("Are you sure want to delete this entry?")
-                            
                 end
 
             when view_menu.menu_items[2]
@@ -198,7 +195,7 @@ while selection != main_menu.menu_items[-1]
                 parameters[:day] = day
             when search_menu.menu_items[6]
                 title = prompt.ask("Enter the title parameter: ")
-                parameters[:title] = title
+                parameters[:title] = title.downcase
             when search_menu.menu_items[7]
                 feeling = prompt.select("Select the feeling parameter:", entry_categories.feelings, per_page: 10)
                 parameters[:feeling] = feeling
