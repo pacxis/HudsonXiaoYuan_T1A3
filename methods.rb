@@ -17,10 +17,13 @@ def display_entry(ent, options)
         # File.delete("Entries/#{ent[selection.to_i - 1][:id]}.txt") need this------
         # a.index{ |t| t[:id] == "deez" }
         j_index = JSON.load_file('journal_index.json', symbolize_names: true)
-        j_index.delete_at(j_index.index{ |hash| hash[ent[selection.to_i - 1][:id]] })
-        # File.open('test.json', 'w') do |f|
-        #         f.puts JSON.pretty_generate(j_index)
-        #     end
+        # j_index.delete_at()
+        j_index.delete_at(j_index.index{ |hash| hash[:id] == ent[selection.to_i - 1][:id] })
+        ap j_index
+        File.open('test.json', 'w') do |f|
+            f.puts JSON.pretty_generate(j_index)
+        end
+        
         return options[-1]
     else
         return m_selection

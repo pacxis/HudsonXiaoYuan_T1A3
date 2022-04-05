@@ -66,6 +66,7 @@ while selection != main_menu.menu_items[-1]
             file << date + "\n"*2
             file << feeling + " (#{intensity})" + "\n"*2
             file << entry
+            file.close
 
             entry_info = {
               title: title.downcase,
@@ -137,7 +138,9 @@ while selection != main_menu.menu_items[-1]
         s_selection = nil
         parameters = {}
         while s_selection != search_menu.menu_items[-1]
+            j_index = JSON.load_file('journal_index.json', symbolize_names: true)
             s_result = []
+            selection = nil
             s_selection = prompt.select("What would you like to do?", search_menu.menu_items, per_page: 10)
             case s_selection
             when search_menu.menu_items[0]
@@ -147,7 +150,7 @@ while selection != main_menu.menu_items[-1]
                            else
                                j_index.select do |hash|
                                    tfi_param.all? do |key, value|
-                                       value == hash[key]
+                                       hash[key].to_s.include? value.to_s
                                    end
                                end
                            end

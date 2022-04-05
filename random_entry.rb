@@ -42,13 +42,17 @@ j_index = [
   }
 ]
 
-puts a
 
 # a.delete_at(index(a.select{ |t| t[:id] == )
 
 # puts a.index(a.select{ |t| t[:id] == "deez" } )
 
-j_index.index{ |hash| hash[ent[selection.to_i - 1][:id]] }
+
 
 # puts .index{ |t| t[:id] == "deez" }
 # puts "bun"
+
+c = "pro skater"
+if c.include? "pro"
+    puts "true"
+end
