@@ -37,12 +37,16 @@ selection = nil
 
 while selection != main_menu.menu_items[-1]
     system "clear"
-    selection = ARGV[0].to_s
-    selection = prompt.select("What would you like to do?", main_menu.menu_items) if selection == ""
+    selection = case ARGV[0]
+                when '-n', '-v', '-s', '-r'
+                   ARGV[0]
+                else
+                    prompt.select("What would you like to do?", main_menu.menu_items)
+                end
 
     case selection
     when main_menu.menu_items[0], '-n'
-
+        puts selection
         date = Date.today.strftime("%d/%m/%Y")
         id = UUIDTools::UUID.timestamp_create.to_s
         begin
@@ -63,9 +67,9 @@ while selection != main_menu.menu_items[-1]
                     end
         entry = prompt.ask("Type out your journal entry: ")
 
-        selection = prompt.yes?("Do you want to save this entry?")
+        save = prompt.yes?("Do you want to save this entry?")
 
-        if selection == true
+        if save == true
             file = File.open("#{id}.txt", 'w')
             FileUtils.mv("#{id}.txt", "Entries/#{id}.txt")
             file << title + "\n"*2
@@ -235,24 +239,12 @@ while selection != main_menu.menu_items[-1]
                 f.puts JSON.pretty_generate([])
             end
             FileUtils.rm_rf(Dir['Entries/*'])
-            prompt.keypress("All journal entries and entry data have been deleted. Press any key to return to main menu")
+            prompt.keypress("All journal entries and entry data deleted. Press any key to return to main menu")
         else
             prompt.keypress("No changes have been made. Press any key to return to main menu")
         end
     when main_menu.menu_items[-1]
         exit
-    else
-        begin
-            raise InvalidArgument
-        rescue InvalidArgument => e
-            puts e.message
-        end
-        exit
     end
     ARGV.clear
 end
-
-
-
-
-
