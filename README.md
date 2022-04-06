@@ -3,7 +3,7 @@ This application is designed to allow users to document the everyday events  of 
 
 ## Features
 - Allow users to create new journal entries comprised of a title, date, feeling, feeling intensity from 1 to 5 and main body and saves them to text files in the ```Entries``` folder.
-- Assigns a unique ID to each journal entry and saves the information to the ```journal_index.json` file.
+- Assigns a unique ID to each journal entry and saves the information to the ```journal_index.json``` file.
 - Allow users to view all previously written journal entries by date, feeling or title alphabetical order
 - Allow users to set search parameters and view journal entries which match them
 - Allow users to delete entries after viewing them
@@ -36,7 +36,7 @@ After running the ```./run_app.sh``` file and installing the required gems, the 
 - ```-s``` to search for specific journal entries
 - ```-r``` to delete all journals and clear ```journal_index.json```
 
-Any other argument will take the user to the main menu, where they can use the app via an interactive menu navigated using the arrow keys and enter key. 
+Leaving the input field empty or inputting any other argument will take the user to the main menu, where they can use the app via an interactive menu navigated using the arrow keys and enter key. 
 
 ## Implementation Plan
 https://trello.com/b/dLxxrRvw/journal-terminal-app
