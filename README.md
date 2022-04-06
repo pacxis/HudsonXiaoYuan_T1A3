@@ -24,19 +24,19 @@ It also relies of the following third party Ruby Gems which are installed using 
 - colorize ~> 0.8.1
 
 ## System and Hardware Requirements
-This Journal App will run on all modern systems which support shell script files. 
+This Journal App will run on all modern systems which support shell script files. An internet connection is required to install dependencies. 
 
 ## Installation
 Navigate to the main directory and run the ```./run_app.sh``` file. The app will then install Bundler and the required gems. 
 
 ## Using the App
-After installation, the app will accept the following command line arguments:
+After running the ```./run_app.sh``` file and installing the required gems, the app will accept the following command line arguments:
 - ```-n``` to create a new journal entry
 - ```-v``` to view all journal entries
 - ```-s``` to search for specific journal entries
 - ```-r``` to delete all journals and clear ```journal_index.json```
 
-Any other argument will take the user to the main menu, where they can use the app via an interactive menu navigated using the arrow keys and enter key.
+Any other argument will take the user to the main menu, where they can use the app via an interactive menu navigated using the arrow keys and enter key. 
 
 ## Implementation Plan
 https://trello.com/b/dLxxrRvw/journal-terminal-app
