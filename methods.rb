@@ -3,7 +3,6 @@ require 'json'
 
 def display_delete_entry(ent, options)
     j_index = JSON.load_file('journal_index.json', symbolize_names: true)
-    m_selection = nil
     prompt = TTY::Prompt.new
     selection = prompt.ask("Enter the Journal Entry number you would like to view: ") do |num|
                     num.in "1-#{ent.length}"
@@ -19,7 +18,6 @@ def display_delete_entry(ent, options)
         File.open('journal_index.json', 'w') do |f|
             f.puts JSON.pretty_generate(j_index)
         end
-        m_selection = nil
         return options[-1]
     else
         return m_selection
