@@ -8,11 +8,19 @@ describe Menu do
     end
 end
 
-describe Parameters do
-    it 'searches journal index by specified parameters' do
-        view = Parameters.new()
-
-        expect(view.view_by_title).not_to be_nil
+describe Emotions do
+    it 'can be instantiated' do
+        my_feeling = Emotions.new("happy")
+        expect(my_feeling).not_to be_nil
+        expect(my_feeling).to be_an_instance_of Emotions
     end
 end
+
+# describe Parameters do
+#     it 'searches journal index by specified parameters' do
+#         view = Parameters.new()
+
+#         expect(view.view_by_title).not_to be_nil
+#     end
+# end
 

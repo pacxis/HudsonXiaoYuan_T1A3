@@ -5,14 +5,6 @@ class Menu
     def initialize(*menu_items)
         @menu_items = menu_items
     end
-
-    def display_menu
-        puts "Please select an option (1 to #{@menu_items.length})"
-        puts "Enter 'menu' to see options again"
-        @menu_items.each_with_index do |item, index|
-            puts "#{index + 1}. #{item}"
-        end
-    end
 end
 
 class Emotions
@@ -22,23 +14,6 @@ class Emotions
         @feelings = feelings
     end
 end
-
-class Parameters
-    attr_accessor :title, :feeling, :intensity, :year, :month, :date
-
-    def initialize(title, feeling, intensity, year, month, day)
-        @title = title
-        @feeling = feeling
-        @intensity = intensity
-    end
-
-    def view_by_title()
-        j_index = JSON.load_file('journal_index.json', symbolize_names: true)
-        sorted_entries = j_index.sort_by { |h| h[:title] }
-                
-    end
-end
-
 
 class InvalidArgument < StandardError
     def message
