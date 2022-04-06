@@ -39,7 +39,22 @@ After running the ```./run_app.sh``` file and installing the required gems, the 
 Leaving the input field empty or inputting any other argument will take the user to the main menu, where they can use the app via an interactive menu navigated using the arrow keys and enter key. 
 
 ## Implementation Plan
-https://trello.com/b/dLxxrRvw/journal-terminal-app
+
+[Link to trello board](https://trello.com/b/dLxxrRvw/journal-terminal-app)
+
+![](docs/trello1.png)
+![](docs/trello2.png)
+![](docs/trello3.png)
+![](docs/trello4.png)
+![](docs/trello5.png)
+![](docs/trello6.png)
+![](docs/trello7.png)
+![](docs/trello8.png)
+![](docs/trello9.png)
 
 ## GitHub Repo
-https://github.com/pacxis/T1A3
+
+[Link to GitHub repo](https://github.com/pacxis/T1A3)
+
+![](docs/github1.png)
+
